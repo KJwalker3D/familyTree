@@ -43,7 +43,7 @@ let NPCTalk: npc.Dialog[] = [
 
 export function addNPCs() {
     placeholder = npc.create(
-        { position: Vector3.create(8, 0, 8), rotation: Quaternion.Zero() },
+        { position: Vector3.create(8, 0, 16), rotation: Quaternion.Zero() },
         {
             type: npc.NPCType.AVATAR,
             onActivate: () => { npc.talk(placeholder, NPCTalk) },
