@@ -8,11 +8,6 @@ class questHud {
             label: "Talk to NPC",
             progress: 0,
             completion: 1
-        },
-        {
-            label: "Collect Seeds",
-            progress: 0,
-            completion: 10
         }
     ]
 
@@ -38,7 +33,7 @@ class questHud {
                 {this.questPlaceholder.map((v, i) => {
                     return (
                         <Label
-                            value={`${v.label}\t\t\t\t${v.progress}/${v.completion}`}
+                            value={`${v.label}\t\t${v.progress}/${v.completion}`}
                             fontSize={18}
                             uiTransform={{ width: '100%', height: 30 }}
                             textAlign="middle-left"
