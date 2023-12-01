@@ -75,4 +75,6 @@ export function main() {
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
 
+
+  // adding in clap meter and needle models which we can adapt to be a dance-o-meter for the first party area
 }
