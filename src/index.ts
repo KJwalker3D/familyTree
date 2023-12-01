@@ -2,9 +2,11 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { PixelCanvas } from './classes/pixelCanvas'
 import { addAssets } from './foliageTests'
 import { PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
+import { setupUi } from './ui'
 
 
 export function main() {
+  setupUi()
   addAssets()
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
