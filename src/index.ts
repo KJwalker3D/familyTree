@@ -5,7 +5,7 @@ import { PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
 import { setupUi } from './ui'
 import { addNPCs } from './npcs'
 import { Seed } from './classes/seed'
-import { GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { ColliderLayer, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
 
 
 export function main() {
@@ -44,4 +44,35 @@ export function main() {
     scale: Vector3.create(1, 1, 1),
     rotation: Quaternion.fromEulerDegrees(0, 0, 0)
   })
+
+  // seeds 
+  const midPoint = Vector3.create(48, 0, 48)
+  const redSeeds = engine.addEntity()
+  const greenSeeds = engine.addEntity()
+  const brownSeeds = engine.addEntity()
+
+  Transform.create(redSeeds, {
+    position: midPoint,
+    scale: Vector3.create(10, 10, 100)
+  })
+  Transform.create(greenSeeds, {
+    position: midPoint
+  })
+  Transform.create(brownSeeds, {
+    position: midPoint
+  })
+
+  GltfContainer.create(redSeeds, {
+    src: 'assets/redSeeds.glb',
+    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
+  })
+  GltfContainer.create(greenSeeds, {
+    src: 'assets/greenSeeds.glb',
+    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
+  })
+  GltfContainer.create(brownSeeds, {
+    src: 'assets/brownSeeds.glb',
+    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
+  })
+
 }
