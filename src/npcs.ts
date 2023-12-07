@@ -1,7 +1,7 @@
 import { Entity } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
-import { QuestHUD } from './ui/quest.ui'
+import { QuestManager } from './questManager'
 
 let placeholder: Entity
 
@@ -17,14 +17,9 @@ let NPCTalk: npc.Dialog[] = [
                 label: `Yes!`,
                 goToDialog: 2,
                 triggeredActions: () => {
-                    QuestHUD.questPlaceholder.push(
-                        {
-                            label: "Collect Seeds",
-                            progress: 0,
-                            completion: 10
-                        }
-                    )
-                    QuestHUD.questPlaceholder[0].progress = 1
+                    if (QuestManager.currentIndex == 0) {
+                        QuestManager.makeProgress()
+                    }
                 },
             },
             {
@@ -43,9 +38,10 @@ let NPCTalk: npc.Dialog[] = [
 
 export function addNPCs() {
     placeholder = npc.create(
-        { position: Vector3.create(8, 0, 16), rotation: Quaternion.Zero() },
+        { position: Vector3.create(8, 0, 16), rotation: Quaternion.Zero(), scale: Vector3.create(0.16, 0.16, 0.16) },
         {
-            type: npc.NPCType.AVATAR,
+            type: npc.NPCType.CUSTOM,
+            model: 'assets/Tala.glb',
             onActivate: () => { npc.talk(placeholder, NPCTalk) },
             faceUser: true,
             hoverText: "Talk",

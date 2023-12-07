@@ -1,6 +1,6 @@
 import { Entity, engine } from "@dcl/ecs"
 import { MeshCollider, MeshRenderer, TransformType, Transform, pointerEventsSystem, InputAction } from "@dcl/sdk/ecs"
-import { QuestHUD } from "../ui/quest.ui"
+import { QuestManager } from "../questManager"
 
 export class Seed {
     entity: Entity
@@ -20,8 +20,9 @@ export class Seed {
                 }
             },
             () => {
-                if (QuestHUD.questPlaceholder.length > 1 && QuestHUD.questPlaceholder[1].progress < QuestHUD.questPlaceholder[1].completion)
-                    QuestHUD.questPlaceholder[1].progress += 1
+                if (QuestManager.currentIndex == 1) {
+                    QuestManager.makeProgress()
+                }
                 engine.removeEntity(this.entity)
             }
         )
