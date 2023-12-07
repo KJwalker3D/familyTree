@@ -2,16 +2,17 @@
 	"ecs7": true,
 	"runtimeVersion": "7",
 	"display": {
-		"title": "SDK7 Scene Template",
-		"description": "template scene with SDK7",
+		"title": "DCL Family Tree",
+		"description": "Goodbye 2023 Party including Quest, Pixel Art and Gifts.",
 		"navmapThumbnail": "images/scene-thumbnail.png",
 		"favicon": "favicon_asset"
 	},
 	"owner": "",
 	"contact": {
-		"name": "SDK",
-		"email": ""
+		"name": "Low Poly Models for DCL Foundation",
+		"email": "lowpolymodelsoffice@gmail.com or hello@decentraland.org"
 	},
+	
 	"main": "bin/index.js",
 	"tags": [],
 	"scene": {
@@ -55,6 +56,7 @@
 		],
 		"base": "-1,-1"
 	},
+	
 	"spawnPoints": [
 		{
 			"name": "spawn1",
@@ -88,5 +90,14 @@
 	"allowedMediaHostnames": [
 		"decentraland.org"
 	],
-	"featureToggles": {}
+	"featureToggles": {},
+	
+	
+		"worldConfiguration": {
+		  "name": "madagascar.dcl.eth",
+		  "placesConfig": {
+			"optOut": true
+		  }
+		}
+	  
 }
