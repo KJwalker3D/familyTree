@@ -1,35 +1,46 @@
-import { Quest } from "./classes/quest"
+import { Quest, QuestType } from "./classes/quest"
 
 class QuestM {
     currentIndex: number = 0
     quests: Quest[] = [
         new Quest(
+            QuestType.TALK_TALA,
             "Talk to Tala"
         ),
         // new Quest(
+        // QuestType.DANCE,
         //     "Dance at treehouse"
         // ),
         new Quest(
+            QuestType.SEEDS,
             "Find, plant and water seeds",
             10
         ),
         new Quest(
+            QuestType.WISHING_WELL,
             "Write a message at the wishing well",
         ),
         new Quest(
+            QuestType.TRIVIA,
             "Answer trivia questions",
             5
         ),
         new Quest(
+            QuestType.GUIDE,
             "Guide the lost player back home",
         ),
         new Quest(
+            QuestType.PIXEL_ART,
             "Create pixel art!",
         ),
     ]
 
     constructor() {
         this.quests[0].hidden = false
+    }
+
+    currentQuestType(): QuestType {
+        return this.quests[this.currentIndex].type
     }
 
     checkProgress() {

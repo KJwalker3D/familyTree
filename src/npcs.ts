@@ -2,10 +2,11 @@ import { Entity } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
+import { QuestType } from './classes/quest'
 
-let placeholder: Entity
+let talaNpc: Entity
 
-let NPCTalk: npc.Dialog[] = [
+let talaDialog: npc.Dialog[] = [
     {
         text: 'Greetings!'
     },
@@ -17,7 +18,7 @@ let NPCTalk: npc.Dialog[] = [
                 label: `Yes!`,
                 goToDialog: 2,
                 triggeredActions: () => {
-                    if (QuestManager.currentIndex == 0) {
+                    if (QuestManager.currentQuestType() == QuestType.TALK_TALA) {
                         QuestManager.makeProgress()
                     }
                 },
@@ -37,12 +38,12 @@ let NPCTalk: npc.Dialog[] = [
 ]
 
 export function addNPCs() {
-    placeholder = npc.create(
+    talaNpc = npc.create(
         { position: Vector3.create(8, 0, 16), rotation: Quaternion.Zero(), scale: Vector3.create(0.16, 0.16, 0.16) },
         {
             type: npc.NPCType.CUSTOM,
             model: 'assets/Tala.glb',
-            onActivate: () => { npc.talk(placeholder, NPCTalk) },
+            onActivate: () => { npc.talk(talaNpc, talaDialog) },
             faceUser: true,
             hoverText: "Talk",
         }
