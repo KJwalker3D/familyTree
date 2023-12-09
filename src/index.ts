@@ -20,7 +20,7 @@ export function main() {
   addAssets()
   addNPCs()
   addDanceManager()
-  //addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
+  addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
@@ -32,6 +32,8 @@ export function main() {
     new Seed({ position: Vector3.create(4 + (i * 2), 0, 4), rotation: Quaternion.fromEulerDegrees(i * 45, i * 45, i * 30), scale: Vector3.One() })
   }
 
+
+  /*
   // collect to water the seeds
   const wateringCan = engine.addEntity()
   GltfContainer.create(wateringCan, {
@@ -83,7 +85,7 @@ export function main() {
     src: 'assets/brownSeeds.glb',
     visibleMeshesCollisionMask: ColliderLayer.CL_POINTER
   })
-
+*/
 
   // adding in clap meter and needle models which we can adapt to be a dance-o-meter for the first party area
 

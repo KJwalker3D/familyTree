@@ -63,13 +63,13 @@
 			"default": true,
 			"position": {
 				"x": [
-					210
+					80
 				],
 				"y": [
 					10
 				],
 				"z": [
-					100
+					80
 				]
 			},
 			"cameraTarget": {
