@@ -7,13 +7,20 @@ import { addNPCs } from './npcs'
 import { Seed } from './classes/seed'
 import { ColliderLayer, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
 import { addDanceManager } from './danceManager'
-
+import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
+// Asset update explanation just in case
+// Garden folder contains garden assets positioned (will work with the tree transform) including glow effects for seeds
+// Haven't removed previous garden assets, but renamed with -0,0 extension as they are not positioned - we can delete them if not needed
+// Party area contains lights as we'll add these in separately without colliders
+// Wishing well folder contains scrolls to collect positioned (with the tree transform) and toonshaders for each in case we can implement them :)
+// In process of adding blog images to memory lane area in blogimages.ts
 
 export function main() {
   setupUi()
   addAssets()
   addNPCs()
   addDanceManager()
+  //addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
