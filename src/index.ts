@@ -20,7 +20,7 @@ export function main() {
   addAssets()
   addNPCs()
   addDanceManager()
-  addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
+  //addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
