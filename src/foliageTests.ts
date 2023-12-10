@@ -31,4 +31,21 @@ export function addAssets() {
     })
 
 
+    // Can use this to highlight different areas for instance the wishing well, or a place to find or anything
+    const sparklesAnimation = engine.addEntity();
+    Transform.create(sparklesAnimation, {
+        position: Vector3.create(10, 0.2, 10)
+    })
+    GltfContainer.create(sparklesAnimation, {
+        src: 'assets/sparkles.glb'
+    })
+    Animator.create(sparklesAnimation, {
+        states: [{
+            clip: 'play',
+            playing: true,
+            loop: true, 
+        }
+        ]
+    })
+
 }
