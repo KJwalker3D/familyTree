@@ -1,5 +1,6 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { Tween, Animator, ColliderLayer, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, Transform, engine, inputSystem, pointerEventsSystem, EasingFunction } from '@dcl/sdk/ecs'
+import { Tween, Animator, ColliderLayer, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, Transform, engine, inputSystem, pointerEventsSystem, EasingFunction, tweenSystem } from '@dcl/sdk/ecs'
+import * as utils from '@dcl-sdk/utils'
 
 let position = Vector3.create(48, 0, 48)
 export function addAssets() {
@@ -55,21 +56,9 @@ export function addAssets() {
 
 
 /// painter platform WIP
-// if theres a height change trigger the corresponding animation
-let heights: number[] = [
+// Why isn't this working right? :(
 
-    0,
-    5,
-    10,
-]
-const displacement: number = 5
-
-const groundMid: string = 'anim';
-const midGround: string = 'anim';
-const groundMax: string = 'anim';
-const maxGround: string = 'anim';
-const midMax: string = 'anim';
-const maxMid: string = 'anim';
+let isMoving: boolean = false;
 
 //pixel canvas height 82.78
 
@@ -113,48 +102,46 @@ function addPlatformButton(position: Vector3, rotation: Quaternion, action: stri
         }, function () {
             console.log(`Button clicked: ${action}`);
             //do stuff
-            if (action === 'up') {
+            if (!isMoving && action === 'up') {
                 //play up anim
                 console.log('up')
+                isMoving = true
                 //increase height number from array, cycle through
 
-            } else if ( action === 'down') {
+            } else if (!isMoving && action === 'down') {
                 //play down anim
                 console.log('down')
+                isMoving = true
 
                 //decrease height number from array, cycle through
 
 
-            } else if ( action === 'left') {
+            } else if (!isMoving && action === 'left') {
                 console.log('left')
-
-                let currentPositionX = Transform.getMutable(platform).position.x
-                let currentPositionZ = Transform.getMutable(platform).position.z
-                let currentPositionY = Transform.getMutable(platform).position.y
-                movePlatform(Vector3.create(-5, 0 ,0))
+                isMoving = true
+                movePlatform(Vector3.create(-1, 0 ,0))
 
           
               
 
-            } else if ( action === 'right') {
+            } else if (!isMoving && action === 'right') {
                 console.log('right')
-
-                let currentPositionX = Transform.getMutable(platform).position.x
-                let currentPositionZ = Transform.getMutable(platform).position.z
-                let currentPositionY = Transform.getMutable(platform).position.y
-                movePlatform(Vector3.create(5, 0 ,0))
+                isMoving = true
+                movePlatform(Vector3.create(1, 0 ,0))
               
             }
         }
     )
 }
 
+
+
 function movePlatform(delta: Vector3) {
     let currentPosition = Transform.getMutable(platform).position;
     let targetPosition = Vector3.create(
       currentPosition.x + delta.x,
-      currentPosition.y + delta.y,
-      currentPosition.z + delta.z
+      currentPosition.y,
+      currentPosition.z 
     );
     Tween.createOrReplace(platform, {
       mode: Tween.Mode.Move({
@@ -165,6 +152,10 @@ function movePlatform(delta: Vector3) {
       easingFunction: EasingFunction.EF_EASECIRC,
     });
  
+    utils.timers.setTimeout(() => {
+        isMoving = false;
+        tweenSystem.tweenCompleted(platform)
+    }, 2000)
   }
 
 

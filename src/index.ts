@@ -20,7 +20,7 @@ export function main() {
   addAssets()
   addNPCs()
   addDanceManager()
-  //addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
+  addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
@@ -89,17 +89,7 @@ export function main() {
 
   // adding in clap meter and needle models which we can adapt to be a dance-o-meter for the first party area
 
-  //NPC
-  const Tala = engine.addEntity();
-  GltfContainer.create(Tala, {
-    src: 'assets/Tala.glb', 
-    visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
-  })
-  Transform.create(Tala, {
-    position: Vector3.create(15, 0, 5),
-    scale: Vector3.create(0.16, 0.16, 0.16),
-    rotation: Quaternion.fromEulerDegrees(0, -90, 0)
-  })
+
 
 
 }
