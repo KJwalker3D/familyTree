@@ -1,36 +1,34 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { Tween, Animator, ColliderLayer, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, Transform, engine, inputSystem, pointerEventsSystem, EasingFunction, tweenSystem } from '@dcl/sdk/ecs'
+import { Tween, Animator, ColliderLayer, GltfContainer, InputAction, MeshCollider, MeshRenderer, PointerEventType, Transform, engine, inputSystem, pointerEventsSystem, EasingFunction, tweenSystem, Entity } from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
 
 let position = Vector3.create(48, 0, 48)
-export function addAssets() {
+export let mainTree = engine.addEntity()
 
-    const tree = engine.addEntity()
-    Transform.create(tree, {
-        position: position,
-        scale: Vector3.create(1, 1, 1)
+export function addAssets() {
+    Transform.create(mainTree, {
+        position: position
     })
-    GltfContainer.create(tree, {
+    GltfContainer.create(mainTree, {
         src: 'assets/tree.glb',
         visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
     })
-    
 
-    const plantAnimation = engine.addEntity();
-    Transform.create(plantAnimation, {
-        position: position
-    })
-    GltfContainer.create(plantAnimation, {
-        src: 'assets/garden/plantAnimation.glb'
-    })
-    Animator.create(plantAnimation, {
-        states: [{
-            clip: 'play',
-            playing: true,
-            loop: true, //looping for testing purposes
-        }
-        ]
-    })
+    // const plantAnimation = engine.addEntity();
+    // Transform.create(plantAnimation, {
+    //     position: position
+    // })
+    // GltfContainer.create(plantAnimation, {
+    //     src: 'assets/garden/plantAnimation.glb'
+    // })
+    // Animator.create(plantAnimation, {
+    //     states: [{
+    //         clip: 'play',
+    //         playing: true,
+    //         loop: true, //looping for testing purposes
+    //     }
+    //     ]
+    // })
 
 
     // Can use this to highlight different areas for instance the wishing well, or a place to find or anything
@@ -45,13 +43,12 @@ export function addAssets() {
         states: [{
             clip: 'play',
             playing: true,
-            loop: true, 
+            loop: true,
         }
         ]
     })
 
 }
-
 
 
 
@@ -99,38 +96,38 @@ function addPlatformButton(position: Vector3, rotation: Quaternion, action: stri
             button: InputAction.IA_POINTER,
             hoverText: 'Click'
         }
-        }, function () {
-            console.log(`Button clicked: ${action}`);
-            //do stuff
-            if (!isMoving && action === 'up') {
-                //play up anim
-                console.log('up')
-                isMoving = true
-                //increase height number from array, cycle through
+    }, function () {
+        console.log(`Button clicked: ${action}`);
+        //do stuff
+        if (!isMoving && action === 'up') {
+            //play up anim
+            console.log('up')
+            isMoving = true
+            //increase height number from array, cycle through
 
-            } else if (!isMoving && action === 'down') {
-                //play down anim
-                console.log('down')
-                isMoving = true
+        } else if (!isMoving && action === 'down') {
+            //play down anim
+            console.log('down')
+            isMoving = true
 
-                //decrease height number from array, cycle through
+            //decrease height number from array, cycle through
 
 
-            } else if (!isMoving && action === 'left') {
-                console.log('left')
-                isMoving = true
-                movePlatform(Vector3.create(-1, 0 ,0))
+        } else if (!isMoving && action === 'left') {
+            console.log('left')
+            isMoving = true
+            movePlatform(Vector3.create(-1, 0, 0))
 
-          
-              
 
-            } else if (!isMoving && action === 'right') {
-                console.log('right')
-                isMoving = true
-                movePlatform(Vector3.create(1, 0 ,0))
-              
-            }
+
+
+        } else if (!isMoving && action === 'right') {
+            console.log('right')
+            isMoving = true
+            movePlatform(Vector3.create(1, 0, 0))
+
         }
+    }
     )
 }
 
@@ -139,32 +136,32 @@ function addPlatformButton(position: Vector3, rotation: Quaternion, action: stri
 function movePlatform(delta: Vector3) {
     let currentPosition = Transform.getMutable(platform).position;
     let targetPosition = Vector3.create(
-      currentPosition.x + delta.x,
-      currentPosition.y,
-      currentPosition.z 
+        currentPosition.x + delta.x,
+        currentPosition.y,
+        currentPosition.z
     );
     Tween.createOrReplace(platform, {
-      mode: Tween.Mode.Move({
-        start: currentPosition,
-        end: targetPosition,
-      }),
-      duration: 2000,
-      easingFunction: EasingFunction.EF_EASECIRC,
+        mode: Tween.Mode.Move({
+            start: currentPosition,
+            end: targetPosition,
+        }),
+        duration: 2000,
+        easingFunction: EasingFunction.EF_EASECIRC,
     });
- 
+
     utils.timers.setTimeout(() => {
         isMoving = false;
         tweenSystem.tweenCompleted(platform)
     }, 2000)
-  }
+}
 
 
 
 
-addPlatformButton(Vector3.create(0, 1, 0), Quaternion.fromEulerDegrees(0,0,0), 'up')
-addPlatformButton(Vector3.create(0, 0, 0), Quaternion.fromEulerDegrees(0,0,0), 'down')
-addPlatformButton(Vector3.create(1, 0.5, 0), Quaternion.fromEulerDegrees(0,0,0), 'left')
-addPlatformButton(Vector3.create(-1, 0.5, 0), Quaternion.fromEulerDegrees(0,0,0), 'right')
+addPlatformButton(Vector3.create(0, 1, 0), Quaternion.fromEulerDegrees(0, 0, 0), 'up')
+addPlatformButton(Vector3.create(0, 0, 0), Quaternion.fromEulerDegrees(0, 0, 0), 'down')
+addPlatformButton(Vector3.create(1, 0.5, 0), Quaternion.fromEulerDegrees(0, 0, 0), 'left')
+addPlatformButton(Vector3.create(-1, 0.5, 0), Quaternion.fromEulerDegrees(0, 0, 0), 'right')
 
 
 
