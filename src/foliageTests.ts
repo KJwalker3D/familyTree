@@ -9,10 +9,10 @@ export function addAssets() {
     Transform.create(mainTree, {
         position: position
     })
-    GltfContainer.create(mainTree, {
+     GltfContainer.create(mainTree, {
         src: 'assets/tree.glb',
-        visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
-    })
+         visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
+     })
 
     // const plantAnimation = engine.addEntity();
     // Transform.create(plantAnimation, {
@@ -149,6 +149,7 @@ engine.addSystem(() => {
         isMoving = false
         console.log("platform stopped", Transform.get(platform).position) // there seems to be a bug with tweening ending in a different position
         Transform.getMutable(platform).position = destination // workaround the bug
+    // Thank you Inihility :)
     }
 })
 
