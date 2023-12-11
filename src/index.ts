@@ -3,9 +3,7 @@ import { PixelCanvas } from './classes/pixelCanvas'
 import { addAssets } from './foliageTests'
 import { PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
 import { setupUi } from './ui'
-import { addNPCs } from './npcs'
 import { Seed } from './classes/seed'
-import { ColliderLayer, GltfContainer, InputAction, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { addDanceManager } from './danceManager'
 import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
 import { GardenManager } from './gardenManager'
@@ -19,7 +17,6 @@ import { GardenManager } from './gardenManager'
 export function main() {
   setupUi()
   addAssets()
-  addNPCs()
   addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
 
   GardenManager.getInstance().activate()

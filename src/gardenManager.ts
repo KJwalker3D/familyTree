@@ -1,6 +1,7 @@
 import { Animator, ColliderLayer, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, PointerEventsResult, Transform, engine, executeTask, pointerEventsSystem } from "@dcl/sdk/ecs"
 import { mainTree } from "./foliageTests"
 import { Vector3 } from "@dcl/sdk/math"
+import { QuestManager } from "./questManager"
 
 const gardenAssets = {
     brownSeeds: {
@@ -228,6 +229,7 @@ export class GardenManager {
                     Animator.playSingleAnimation(this.plant, 'play')
                     pointerEventsSystem.removeOnPointerDown(this.plant)
                     this.setGardenHoverText("Happy Plant")
+                    QuestManager.makeProgress()
                 }
             }
         )

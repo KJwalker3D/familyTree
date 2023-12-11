@@ -9,10 +9,10 @@ export function addAssets() {
     Transform.create(mainTree, {
         position: position
     })
-    // GltfContainer.create(mainTree, {
-    //     src: 'assets/tree.glb',
-    //     visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
-    // })
+    GltfContainer.create(mainTree, {
+        src: 'assets/tree.glb',
+        visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
+    })
 
     // const plantAnimation = engine.addEntity();
     // Transform.create(plantAnimation, {
