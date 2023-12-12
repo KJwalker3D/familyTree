@@ -50,14 +50,14 @@ class QuestM {
             const currenqtQ = this.quests[this.currentIndex]
             // check if current quest is complete
             if (currenqtQ.progress >= currenqtQ.goal || currenqtQ.complete) {
-                NPCManager.endQuest()
+                this.endQuest()
                 currenqtQ.progress = currenqtQ.goal
                 currenqtQ.complete = true
                 if (this.currentIndex + 1 < this.quests.length) {
                     this.quests[this.currentIndex + 1].hidden = false
                 }
                 this.currentIndex++
-                NPCManager.startQuest()
+                this.startQuest()
             }
             // check if all quests complete
             if (this.currentIndex + 1 >= this.quests.length) {
@@ -67,6 +67,20 @@ class QuestM {
             console.log("No quests left!")
         }
     }
+
+    startQuest() {
+        NPCManager.startQuest()
+    }
+
+    endQuest() {
+        NPCManager.endQuest()
+        if (this.currentQuestType() == QuestType.DANCE) {
+            // give wearable(?)
+        }
+    }
+
+
+
 
     makeProgress() {
         if (this.currentIndex < this.quests.length) {

@@ -1,10 +1,12 @@
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
+import { NPCManager } from './npcManager'
+import { Vector3 } from '@dcl/sdk/math'
 
 
 export const talaDialog: npc.Dialog[] = [
-    { // 0
+    { // 0 TALA TALK QUEST
         text: "Hey there, adventurer! Welcome to our End-of-Year Bash in the heart of Decentraland.\n\nI'm Tala, your guide for this epic journey."
     },
     { // 1
@@ -39,10 +41,80 @@ export const talaDialog: npc.Dialog[] = [
             }
         }
     },
-    { // 5
+    { // 5 DANCE QUEST
         text: "Your first task: find the party area, and show me your sickest dance moves! There’s a dance-meter in the party area that will fill up as you dance, I’ll join you when it’s full. Let the celebrations kick off!",
         isEndOfDialog: true,
     },
+    { // 6
+        text: "Damn, those moves were fire! Here's a little something for your efforts.\n\nNow, follow me to the next part of our quest!",
 
-
+    },
+    { // 7
+        text: "Next stop, our secret garden, where ideas take root and bloom. It’s a chill spot where we plant the seeds of growth.",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTalaNoDialog()
+            npc.followPath(NPCManager.talaNpc, {
+                path: NPCManager.pathToGarden,
+                totalDuration: 6,
+                onFinishCallback: () => {
+                    NPCManager.createTala(NPCManager.talaPositions[2], talaDialog, 8)
+                }
+            })
+        }
+    },
+    { // 8 SEED QUEST
+        text: "Your mission is to plant some seeds of your own! You’ll need to find the seeds first though, plant them in the middle here and water ‘em to watch the magic unfold.",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTalaNoDialog()
+            npc.followPath(NPCManager.talaNpc, {
+                path: NPCManager.pathAtGarden,
+                totalDuration: 6,
+                onFinishCallback: () => {
+                    NPCManager.createTala(NPCManager.talaPositions[3], talaDialog, 9)
+                }
+            })
+        }
+    },
+    { // 9 SEED QUEST    
+        text: "Your mission is to plant some seeds of your own! You’ll need to find the seeds first though, plant them in the middle here and water ‘em to watch the magic unfold.",
+        isEndOfDialog: true,
+    },
+    { // 10
+        text: "Your plants are thriving! From tiny seeds to this beauty – impressive, right?\nReady for the next chapter?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Not yet.",
+                goToDialog: 11
+            },
+            {
+                label: "Yes!",
+                goToDialog: 12
+            },
+        ]
+    },
+    { // 11
+        text: "See you!",
+        isEndOfDialog: true
+    },
+    { // 12
+        text: "Let's go!",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTalaNoDialog()
+            npc.followPath(NPCManager.talaNpc, {
+                path: NPCManager.pathToWell,
+                totalDuration: 10,
+                onFinishCallback: () => {
+                    NPCManager.createTala(NPCManager.talaPositions[5], talaDialog, 13)
+                }
+            })
+        }
+    },
+    { // 13
+        text: "As dreamers, we've got a Community Wishing Well. Collect the scrolls, jot down your wish, and toss it in the well. Who knows, maybe others are wishing for the same rad stuff!",
+        isEndOfDialog: true
+    }
 ]

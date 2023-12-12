@@ -25,6 +25,7 @@ export function addDanceManager() {
     onPlayerExpressionObservable.add(({ expressionId }) => {
         if (expressionId == 'dance' || expressionId == 'robot' || expressionId == 'tik' || expressionId == 'hammer' || expressionId == 'tektonik' || expressionId == 'disco') {
             console.log('dance detected')
+            if (QuestManager.currentQuestType() != QuestType.DANCE) return
             isDancing = true
             sceneMessageBus.emit('updateDanceMeter', {})
 
