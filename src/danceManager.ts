@@ -13,9 +13,9 @@ export function addDanceManager() {
     // Multiplayer (p2p)
     const sceneMessageBus = new MessageBus()
     const danceMeter = new DanceMeter(
-        Vector3.create(8, 0.5, 15), // Position
-        Vector3.create(0, 0, 0), // Rotation in Euler degrees
-        Vector3.create(1, 1, 1), // Scale
+        Vector3.create(78.5, 21, 31), // Position
+        Vector3.create(0, 90, 0), // Rotation in Euler degrees
+        Vector3.create(.8, .8, .8), // Scale
         undefined // Parent entity
     )
 

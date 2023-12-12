@@ -116,5 +116,40 @@ export const talaDialog: npc.Dialog[] = [
     { // 13
         text: "As dreamers, we've got a Community Wishing Well. Collect the scrolls, jot down your wish, and toss it in the well. Who knows, maybe others are wishing for the same rad stuff!",
         isEndOfDialog: true
+    },
+    { // 14
+        text: "May your wish vibe with the community dreams. Take this token as a reminder.\nReady for the next adventure?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Not yet.",
+                goToDialog: 15
+            },
+            {
+                label: "Yes!",
+                goToDialog: 16
+            },
+        ]
+    },
+    { // 15
+        text: "See you!",
+        isEndOfDialog: true
+    },
+    { // 16
+        text: "Memories shape our journey, so we made Memory Lane to share some moments from 2023. There are so many more to add though, we could fill the whole tree!"
+    },
+    { // 17
+        text: "Anyway, hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTala(NPCManager.talaPositions[5], talaDialog, 18)
+        }
+    },
+    { // 18
+        text: "Hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
+        isEndOfDialog: true
     }
+
+
+
 ]
