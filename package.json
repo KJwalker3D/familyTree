@@ -27,6 +27,10 @@
   },
   "dependencies": {
     "@dcl-sdk/utils": "^1.1.3",
-    "dcl-npc-toolkit": "^1.1.4"
-  }
+    "dcl-npc-toolkit": "^1.1.4",
+    "dcl-ui-toolkit": "^0.9.1"
+  },
+  "bundledDependencies": [
+    "dcl-ui-toolkit"
+  ]
 }
