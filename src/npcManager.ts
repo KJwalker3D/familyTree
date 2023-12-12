@@ -3,38 +3,8 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
+import { talaDialog } from './npcDialog'
 
-
-let talaDialog: npc.Dialog[] = [
-    {
-        text: 'Greetings!'
-    },
-    {
-        text: 'Could you help me fetch some seeds lying around?',
-        isQuestion: true,
-        buttons: [
-            {
-                label: `Yes!`,
-                goToDialog: 2,
-                triggeredActions: () => {
-                    if (QuestManager.currentQuestType() == QuestType.TALK_TALA) {
-                        QuestManager.makeProgress()
-                    }
-                },
-            },
-            {
-                label: `I'm busy`,
-                goToDialog: 2,
-                triggeredActions: () => {
-                }
-            }
-        ]
-    },
-    {
-        text: 'See you!',
-        isEndOfDialog: true
-    }
-]
 
 class NPC {
     talaNpc: Entity
@@ -48,11 +18,13 @@ class NPC {
                 onActivate: () => { npc.talk(this.talaNpc, talaDialog) },
                 faceUser: true,
                 hoverText: "Talk",
+                portrait: "images/TalaPortrait.png"
             }
         )
     }
 
     startQuest() {
+
 
     }
 
