@@ -3,8 +3,6 @@ import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 
 
-
-
 export const talaDialog: npc.Dialog[] = [
     { // 0
         text: "Hey there, adventurer! Welcome to our End-of-Year Bash in the heart of Decentraland.\n\nI'm Tala, your guide for this epic journey."
@@ -32,16 +30,18 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 4
         text: "Time to hit the dance floor, my friend! Our parties are legendary, setting the vibe for our gatherings. But there's more to our hangouts, as you'll soon find in the upcoming tree houses.",
-    },
-    { // 5
-        text: "Your first task: find the party area, and show me your sickest dance moves! There’s a dance-meter in the party area that will fill up as you dance, I’ll join you when it’s full. Let the celebrations kick off!",
         isEndOfDialog: true,
         triggeredByNext: () => {
             // Start dance quest
             if (QuestManager.currentQuestType() == QuestType.TALK_TALA) {
                 QuestManager.makeProgress()
+
             }
         }
+    },
+    { // 5
+        text: "Your first task: find the party area, and show me your sickest dance moves! There’s a dance-meter in the party area that will fill up as you dance, I’ll join you when it’s full. Let the celebrations kick off!",
+        isEndOfDialog: true,
     },
 
 

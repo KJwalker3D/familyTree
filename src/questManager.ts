@@ -1,17 +1,19 @@
 import { Quest, QuestType } from "./classes/quest"
 import { NPCManager } from "./npcManager"
 
+
+
 class QuestM {
     currentIndex: number = 0
     quests: Quest[] = [
-        // new Quest(
-        //     QuestType.TALK_TALA,
-        //     "Talk to Tala"
-        // ),
-        // new Quest(
-        // QuestType.DANCE,
-        //     "Dance at treehouse"
-        // ),
+        new Quest(
+            QuestType.TALK_TALA,
+            "Talk to Tala"
+        ),
+        new Quest(
+            QuestType.DANCE,
+            "Dance at treehouse"
+        ),
         new Quest(
             QuestType.SEEDS,
             "Find, plant and water seeds"

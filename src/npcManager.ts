@@ -1,4 +1,4 @@
-import { Entity, Transform } from '@dcl/sdk/ecs'
+import { Entity, Transform, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
@@ -7,18 +7,29 @@ import { talaDialog } from './npcDialog'
 
 
 class NPC {
-    talaNpc: Entity
+    talaNpc: any
+
+    talaPositions: Vector3[] = [
+        Vector3.create(8, 0, 16)
+    ]
 
     constructor() {
+        this.createTala(this.talaPositions[0], talaDialog)
+    }
+
+    createTala(pos: Vector3, dialog: npc.Dialog[], index: number = 0) {
+        if (this.talaNpc) engine.removeEntity(this.talaNpc)
+
         this.talaNpc = npc.create(
-            { position: Vector3.create(8, 0, 16), rotation: Quaternion.Zero(), scale: Vector3.create(0.16, 0.16, 0.16) },
+            { position: pos, rotation: Quaternion.Zero(), scale: Vector3.create(0.16, 0.16, 0.16) },
             {
                 type: npc.NPCType.CUSTOM,
                 model: 'assets/Tala.glb',
-                onActivate: () => { npc.talk(this.talaNpc, talaDialog) },
+                onActivate: () => { npc.talk(this.talaNpc, dialog, index) },
                 faceUser: true,
                 hoverText: "Talk",
-                portrait: "images/TalaPortrait.png"
+                portrait: "images/TalaPortrait.png",
+                coolDownDuration: 2
             }
         )
     }
@@ -30,8 +41,14 @@ class NPC {
 
     endQuest() {
         const currentQuest = QuestManager.currentQuestType()
-        if (currentQuest == QuestType.SEEDS) {
-            Transform.getMutable(this.talaNpc).position = Vector3.create(53, 29.3, 62.5)
+        switch (currentQuest) {
+            case QuestType.TALK_TALA:
+                this.createTala(this.talaPositions[0], talaDialog, 5)
+                break
+            case QuestType.SEEDS:
+                Transform.getMutable(this.talaNpc).position = Vector3.create(53, 29.3, 62.5)
+                break
+
         }
     }
 }
