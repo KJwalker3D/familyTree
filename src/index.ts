@@ -7,6 +7,8 @@ import { Seed } from './classes/seed'
 import { addDanceManager } from './danceManager'
 import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
 import { GardenManager } from './gardenManager'
+import { engine, Transform, GltfContainer, ColliderLayer } from '@dcl/ecs'
+import { createPainterPlatform } from './painterPlatform'
 // Asset update explanation just in case
 // Garden folder contains garden assets positioned (will work with the tree transform) including glow effects for seeds
 // Haven't removed previous garden assets, but renamed with -0,0 extension as they are not positioned - we can delete them if not needed
@@ -18,9 +20,9 @@ export function main() {
   setupUi()
   addAssets()
   addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
-
+  createPainterPlatform()
   GardenManager.getInstance().activate()
-
+  
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
