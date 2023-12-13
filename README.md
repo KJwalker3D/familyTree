@@ -263,3 +263,15 @@ To fetch the mutable version of a component, call it via `ComponentDefinition.ge
 ```ts
 const mutableTransform = Transform.getMutable(myEntity)
 ```
+### Acknowledgements and thanks to
+
+- Red Albert (Party Area music) https://open.spotify.com/track/0HIuW53jCkyoyiyBTXYjf7
+- Chin Eeyang (Female base mesh) https://sketchfab.com/3d-models/female-body-3aa7ac1360ce4a23bf034c6ea436c257 
+- Toxic (Boots base mesh) https://sketchfab.com/3d-models/black-boots-fcca2bfba5be404c996b3fccdcb7dee8#download
+- Pixabay (Sounds) https://pixabay.com/sound-effects/ 
+
+Created by team Low Poly Models: 
+- FGR3D (3D and sound artist)
+- MaHa (3D artist)
+- Inihility (Developer)
+- KJ (3D artist and project ideation) 
