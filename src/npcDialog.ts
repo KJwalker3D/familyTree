@@ -2,7 +2,6 @@ import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { NPCManager } from './npcManager'
-import { Vector3 } from '@dcl/sdk/math'
 
 
 export const talaDialog: npc.Dialog[] = [
@@ -56,7 +55,7 @@ export const talaDialog: npc.Dialog[] = [
             NPCManager.createTalaNoDialog()
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathToGarden,
-                totalDuration: 6,
+                totalDuration: 8,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[2], talaDialog, 8)
                 }
@@ -70,7 +69,7 @@ export const talaDialog: npc.Dialog[] = [
             NPCManager.createTalaNoDialog()
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathAtGarden,
-                totalDuration: 6,
+                totalDuration: 8,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[3], talaDialog, 9)
                 }
@@ -106,7 +105,7 @@ export const talaDialog: npc.Dialog[] = [
             NPCManager.createTalaNoDialog()
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathToWell,
-                totalDuration: 10,
+                totalDuration: 12,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[5], talaDialog, 13)
                 }
