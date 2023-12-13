@@ -1,4 +1,5 @@
 import { Quest, QuestType } from "./classes/quest"
+import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
 
 
@@ -70,6 +71,9 @@ class QuestM {
 
     startQuest() {
         NPCManager.startQuest()
+        if (this.currentQuestType() == QuestType.SEEDS) {
+            GardenManager.getInstance().activate()
+        }
     }
 
     endQuest() {

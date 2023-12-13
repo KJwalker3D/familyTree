@@ -24,8 +24,6 @@ export function main() {
   addAssets()
   addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
   createPainterPlatform()
-  GardenManager.getInstance().activate()
-
 
   new PixelCanvas({
     position: Vector3.create(2, 1, 2),
