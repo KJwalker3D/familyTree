@@ -58,7 +58,8 @@ class NPC {
                 faceUser: true,
                 hoverText: "Talk",
                 portrait: "images/TalaPortrait.png",
-                coolDownDuration: 3
+                coolDownDuration: 3,
+                walkingAnim: 'Walk'
             }
         )
         Transform
@@ -76,6 +77,7 @@ class NPC {
                 faceUser: true,
                 hoverText: "Tala",
                 portrait: "images/TalaPortrait.png",
+                walkingAnim: 'Walk'
             }
         )
     }
