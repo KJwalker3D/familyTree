@@ -10,6 +10,7 @@ import { engine, Transform, TextShape, executeTask, AudioSource } from '@dcl/ecs
 import { createPainterPlatform } from './painterPlatform'
 import { getMessages, publishMessage } from './serverHandler'
 import * as utils from '@dcl-sdk/utils'
+import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
 
 // Asset update explanation just in case
 // Garden folder contains garden assets positioned (will work with the tree transform) including glow effects for seeds
@@ -24,6 +25,9 @@ export function main() {
   addAmbientSound()
   addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
   createPainterPlatform()
+  createMemoryLaneAnim()
+  createWishingWellAnim()
+  createOasisAssets()
 
   new PixelCanvas({
     position: Vector3.create(62, 75.2, 83),
