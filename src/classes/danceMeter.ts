@@ -54,7 +54,7 @@ export class DanceMeter {
     }
 
     public updateNeedle: SystemFn = (dt: number) => {
-        const dancesNeeded = 4 // Number of dances needed to reach the end, higher number = more difficult / lower number = easier
+        const dancesNeeded = 2 // Number of dances needed to reach the end, higher number = more difficult / lower number = easier
 
         if (this.cooldownRemaining > 0) {
             this.currentNeedleRotation += COOLDOWN_INCREMENT
