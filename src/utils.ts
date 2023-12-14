@@ -9,3 +9,4 @@ export function getRandomHexColor(): string {
 
 export const PIXEL_CANVAS_COLS = 40
 export const PIXEL_CANVAS_ROWS = 20
+export const MAX_WELL_MESSAGES = 20

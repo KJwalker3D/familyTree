@@ -1,7 +1,7 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { PixelCanvas } from './classes/pixelCanvas'
 import { addAssets } from './foliageTests'
-import { PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
+import { MAX_WELL_MESSAGES, PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
 import { setupUi } from './ui'
 import { Seed } from './classes/seed'
 import { addDanceManager } from './danceManager'
@@ -41,10 +41,9 @@ export function main() {
 
   executeTask(async () => {
     let messages = await getMessages()
-    console.log("@@@", messages)
     let wellAnchors = []
-    let maxMessages = messages.length < 20 ? messages.length : 20
-    for (let i = 0; i < messages.length; i++) {
+    let maxMessages = messages.length < MAX_WELL_MESSAGES ? messages.length : MAX_WELL_MESSAGES
+    for (let i = 0; i < maxMessages; i++) {
       const e = engine.addEntity()
       wellAnchors.push(e)
       // MeshRenderer.setBox(e)
