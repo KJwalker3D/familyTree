@@ -40,7 +40,7 @@ export class Pixel {
             opts: {
                 button: InputAction.IA_POINTER,
                 hoverText: `Paint (${index.x}, ${index.y})`,
-                maxDistance: 12
+                maxDistance: 32
             }
         },
             () => {

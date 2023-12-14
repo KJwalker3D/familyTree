@@ -7,5 +7,5 @@ export function getRandomHexColor(): string {
   return color;
 }
 
-export const PIXEL_CANVAS_COLS = 16
-export const PIXEL_CANVAS_ROWS = 16
+export const PIXEL_CANVAS_COLS = 40
+export const PIXEL_CANVAS_ROWS = 20
