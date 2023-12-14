@@ -1,4 +1,5 @@
 import { Quest, QuestType } from "./classes/quest"
+import { startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
 
@@ -78,12 +79,13 @@ class QuestM {
 
     endQuest() {
         NPCManager.endQuest()
-        if (this.currentQuestType() == QuestType.DANCE) {
+        if (this.currentQuestType() == QuestType.TALK_TALA) {
+            startParty()
+        }
+        else if (this.currentQuestType() == QuestType.DANCE) {
             // give wearable(?)
         }
     }
-
-
 
 
     makeProgress() {

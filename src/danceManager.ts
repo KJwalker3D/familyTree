@@ -5,11 +5,14 @@ import { onPlayerExpressionObservable } from '@dcl/sdk/observables'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { Vector3 } from '@dcl/sdk/math'
-import { GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { AudioSource, Entity, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
 import { mainTree } from './foliageTests'
 
 
 export let isDancing: boolean = false
+export let partyBGM: Entity = engine.addEntity()
+export let partyBGMLoud: Entity = engine.addEntity()
+
 
 export function addDanceManager() {
     const lights = engine.addEntity()
@@ -20,6 +23,21 @@ export function addDanceManager() {
         parent: mainTree
     })
 
+    Transform.create(partyBGM, { position: Vector3.create(70, 23, 31) })
+    AudioSource.create(partyBGM, {
+        audioClipUrl: "sound/partyDance.mp3",
+        playing: true,
+        loop: true,
+        volume: 0.2
+    })
+
+    Transform.create(partyBGMLoud, { position: Vector3.create(70, 23, 31) })
+    AudioSource.create(partyBGMLoud, {
+        audioClipUrl: "sound/partyDance.mp3",
+        playing: false,
+        loop: true,
+        volume: 0.8
+    })
 
     // Multiplayer (p2p)
     const sceneMessageBus = new MessageBus()
@@ -37,6 +55,7 @@ export function addDanceManager() {
         if (expressionId == 'dance' || expressionId == 'robot' || expressionId == 'tik' || expressionId == 'hammer' || expressionId == 'tektonik' || expressionId == 'disco') {
             console.log('dance detected')
             if (QuestManager.currentQuestType() != QuestType.DANCE) return
+
             isDancing = true
             sceneMessageBus.emit('updateDanceMeter', {})
 
@@ -64,4 +83,9 @@ export function addDanceManager() {
             }
         }
     })
+}
+
+export function startParty() {
+    AudioSource.getMutable(partyBGM).playing = false
+    AudioSource.getMutable(partyBGMLoud).playing = true
 }

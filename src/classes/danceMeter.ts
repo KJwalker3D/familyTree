@@ -53,6 +53,10 @@ export class DanceMeter {
         engine.addSystem(this.updateNeedle)
     }
 
+    stopUpdate() {
+        engine.removeSystem(this.updateNeedle)
+    }
+
     public updateNeedle: SystemFn = (dt: number) => {
         const dancesNeeded = 2 // Number of dances needed to reach the end, higher number = more difficult / lower number = easier
 
