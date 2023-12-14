@@ -43,7 +43,7 @@ class NPC {
         this.createTala(this.talaPositions[0], talaDialog)
     }
 
-    createTala(transform: { position: Vector3, rotation?: Quaternion }, dialog: npc.Dialog[], index: number = 0) {
+    createTala(transform: { position: Vector3, rotation?: Quaternion }, dialog: npc.Dialog[], index: number = 0, onActivateAnim: string = "Explain") {
         if (this.talaNpc) engine.removeEntity(this.talaNpc)
 
         this.talaNpc = npc.create(
@@ -52,7 +52,7 @@ class NPC {
                 type: npc.NPCType.CUSTOM,
                 model: "assets/Tala.glb",
                 onActivate: () => {
-                    npc.playAnimation(this.talaNpc, `Explain`, false)
+                    npc.playAnimation(this.talaNpc, onActivateAnim, false)
                     npc.talk(this.talaNpc, dialog, index)
                 },
                 onWalkAway: () => {
@@ -70,6 +70,10 @@ class NPC {
 
     playIdleAnim() {
         npc.playAnimation(this.talaNpc, 'ShortIdle', false)
+    }
+
+    playCoolAnim() {
+        npc.playAnimation(this.talaNpc, 'Cool', false)
     }
 
     createTalaNoDialog(pos: Vector3 = Transform.get(this.talaNpc).position) {
@@ -102,15 +106,14 @@ class NPC {
                 this.createTala(this.talaPositions[0], talaDialog, 5)
                 break
             case QuestType.DANCE:
-                this.createTala(this.talaPositions[1], talaDialog, 6)
+                this.createTala(this.talaPositions[1], talaDialog, 6, "Cool")
                 Transform.getMutable(this.talaNpc).rotation = Quaternion.fromEulerDegrees(0, 180, 0)
                 npc.talk(this.talaNpc, talaDialog, 6)
                 break
             case QuestType.SEEDS:
-                this.createTala(this.talaPositions[4], talaDialog, 10)
-                npc.talk(this.talaNpc, talaDialog, 10)
+                this.createTala(this.talaPositions[4], talaDialog, 10, "Cool")
+                npc.talk(this.talaNpc, talaDialog, 10,)
                 break
-
         }
     }
 }
