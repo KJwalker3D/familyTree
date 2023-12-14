@@ -38,7 +38,7 @@ export const talaDialog: npc.Dialog[] = [
         triggeredByNext: () => {
             // Start dance quest
             if (QuestManager.currentQuestType() == QuestType.TALK_TALA) {
-                QuestManager.makeProgress()
+                QuestManager.nextStep()
 
             }
         }

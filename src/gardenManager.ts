@@ -250,7 +250,7 @@ export class GardenManager {
                     Animator.playSingleAnimation(this.plant, 'play')
                     pointerEventsSystem.removeOnPointerDown(this.plant)
                     this.setGardenHoverText("Happy Plant")
-                    QuestManager.makeProgress()
+                    QuestManager.nextStep()
                     this.playGrowing()
                 }
             }

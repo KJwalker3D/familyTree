@@ -1,8 +1,7 @@
-import { Quest, QuestType } from "./classes/quest"
+import { Quest, QuestStep, QuestType } from "./classes/quest"
 import { startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
-
 
 
 class QuestM {
@@ -10,32 +9,56 @@ class QuestM {
     quests: Quest[] = [
         new Quest(
             QuestType.TALK_TALA,
-            "Talk to Tala"
+            "Talk to Tala",
+            [
+                new QuestStep("Talk to Tala")
+            ]
         ),
         new Quest(
             QuestType.DANCE,
-            "Dance at treehouse"
+            "Dance at treehouse",
+            [
+                new QuestStep("Find party area"),
+                new QuestStep("Dance your heart out")
+            ]
         ),
         new Quest(
             QuestType.SEEDS,
-            "Find, plant and water seeds"
+            "Find, plant and water seeds",
+            [
+                new QuestStep("Find the seeds"),
+                new QuestStep("Plant the seeds"),
+                new QuestStep("Water the seeds")
+            ]
         ),
         new Quest(
             QuestType.WISHING_WELL,
             "Write a message at the wishing well",
+            [
+                new QuestStep("Talk to Tala")
+            ]
         ),
         new Quest(
             QuestType.TRIVIA,
             "Answer trivia questions",
-            5
+            [
+                new QuestStep("Talk to Tala")
+            ]
+
         ),
         new Quest(
             QuestType.GUIDE,
             "Guide the lost player back home",
+            [
+                new QuestStep("Talk to Tala")
+            ]
         ),
         new Quest(
             QuestType.PIXEL_ART,
             "Create pixel art!",
+            [
+                new QuestStep("Talk to Tala")
+            ]
         ),
     ]
 
@@ -80,6 +103,7 @@ class QuestM {
     endQuest() {
         NPCManager.endQuest()
         if (this.currentQuestType() == QuestType.TALK_TALA) {
+
             startParty()
         }
         else if (this.currentQuestType() == QuestType.DANCE) {
@@ -87,6 +111,20 @@ class QuestM {
         }
     }
 
+    getCurrentSteps() {
+        return this.quests[this.currentIndex].steps
+    }
+
+    nextStep() {
+        const steps = this.getCurrentSteps()
+        for (let i = 0; i < steps.length; i++) {
+            if (!steps[i].complete) {
+                steps[i].complete = true
+                if (i + 1 == steps.length) this.makeProgress()
+                return
+            }
+        }
+    }
 
     makeProgress() {
         if (this.currentIndex < this.quests.length) {

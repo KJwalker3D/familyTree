@@ -16,9 +16,21 @@ export class Quest {
     complete: boolean = false
     hidden: boolean = true
 
-    constructor(type: QuestType, text: string, goal: number = 1) {
+    steps: QuestStep[]
+
+    constructor(type: QuestType, text: string, steps: QuestStep[], goal: number = 1) {
         this.type = type
         this.text = text
         this.goal = goal
+        this.steps = steps
+    }
+}
+
+export class QuestStep {
+    text: string
+    complete: boolean = false
+
+    constructor(text: string) {
+        this.text = text
     }
 }
