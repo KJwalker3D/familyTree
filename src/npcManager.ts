@@ -1,4 +1,4 @@
-import { ColliderLayer, Entity, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { Transform, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
@@ -9,13 +9,13 @@ import { talaDialog } from './npcDialog'
 class NPC {
     talaNpc: any
 
-    talaPositions: Vector3[] = [
-        Vector3.create(8, 0, 16), // 0 start
-        Vector3.create(73.5, 20, 38), // 1 dance floor
-        Vector3.create(64.5, 29.3, 56), // 2 garden 1
-        Vector3.create(44, 30.2, 67), // 3 garden 2
-        Vector3.create(53, 29.3, 62.5), // 4 garden 3 (end quest)
-        Vector3.create(13, 40, 59), // 5 well 1
+    talaPositions: any[] = [
+        { position: Vector3.create(74, 0, 32), rotation: Quaternion.fromEulerDegrees(0, 90, 0) }, // 0 start
+        { position: Vector3.create(73.5, 20, 38) }, // 1 dance floor
+        { position: Vector3.create(64.5, 29.3, 56) }, // 2 garden 1
+        { position: Vector3.create(44, 30.2, 67) }, // 3 garden 2
+        { position: Vector3.create(53, 29.3, 62.5) }, // 4 garden 3 (end quest)
+        { position: Vector3.create(13, 40, 59) }, // 5 well 1
     ]
 
     pathToGarden: Vector3[] = [
@@ -43,11 +43,11 @@ class NPC {
         this.createTala(this.talaPositions[0], talaDialog)
     }
 
-    createTala(pos: Vector3, dialog: npc.Dialog[], index: number = 0) {
+    createTala(transform: { position: Vector3, rotation?: Quaternion }, dialog: npc.Dialog[], index: number = 0) {
         if (this.talaNpc) engine.removeEntity(this.talaNpc)
 
         this.talaNpc = npc.create(
-            { position: pos, rotation: Quaternion.Zero(), scale: Vector3.create(0.16, 0.16, 0.16) },
+            { ...transform, scale: Vector3.create(0.16, 0.16, 0.16) },
             {
                 type: npc.NPCType.CUSTOM,
                 model: "assets/Tala.glb",
@@ -62,7 +62,6 @@ class NPC {
                 walkingAnim: 'Walk'
             }
         )
-        Transform
     }
 
     createTalaNoDialog(pos: Vector3 = Transform.get(this.talaNpc).position) {

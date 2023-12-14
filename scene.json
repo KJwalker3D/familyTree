@@ -12,7 +12,6 @@
 		"name": "Low Poly Models for DCL Foundation",
 		"email": "lowpolymodelsoffice@gmail.com or hello@decentraland.org"
 	},
-	
 	"main": "bin/index.js",
 	"tags": [],
 	"scene": {
@@ -56,26 +55,25 @@
 		],
 		"base": "-1,-1"
 	},
-	
 	"spawnPoints": [
 		{
 			"name": "spawn1",
 			"default": true,
 			"position": {
 				"x": [
-					80
+					83
 				],
 				"y": [
-					10
+					1
 				],
 				"z": [
-					100
+					26
 				]
 			},
 			"cameraTarget": {
-				"x": -8,
+				"x": 76,
 				"y": 1,
-				"z": 8
+				"z": 33
 			}
 		}
 	],
@@ -88,13 +86,10 @@
 		"decentraland.org"
 	],
 	"featureToggles": {},
-	
-	
-		"worldConfiguration": {
-		  "name": "madagascar.dcl.eth",
-		  "placesConfig": {
+	"worldConfiguration": {
+		"name": "madagascar.dcl.eth",
+		"placesConfig": {
 			"optOut": true
-		  }
 		}
-	  
+	}
 }
