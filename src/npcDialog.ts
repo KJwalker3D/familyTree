@@ -62,6 +62,8 @@ export const talaDialog: npc.Dialog[] = [
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathToGarden,
                 totalDuration: 8,
+                pathType: npc.NPCPathType.SMOOTH_PATH,
+                curve: true,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[2], talaDialog, 8)
                 }
@@ -76,6 +78,8 @@ export const talaDialog: npc.Dialog[] = [
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathAtGarden,
                 totalDuration: 8,
+                pathType: npc.NPCPathType.SMOOTH_PATH,
+                curve: true,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[3], talaDialog, 9)
                 }
@@ -118,6 +122,8 @@ export const talaDialog: npc.Dialog[] = [
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathToWell,
                 totalDuration: 12,
+                pathType: npc.NPCPathType.SMOOTH_PATH,
+                curve: true,
                 onFinishCallback: () => {
                     NPCManager.createTala(NPCManager.talaPositions[5], talaDialog, 13)
                 }
