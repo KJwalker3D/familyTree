@@ -26,9 +26,9 @@ export function main() {
   createPainterPlatform()
 
   new PixelCanvas({
-    position: Vector3.create(2, 1, 2),
-    rotation: Quaternion.Zero(),
-    scale: Vector3.One()
+    position: Vector3.create(62, 75.2, 83),
+    rotation: Quaternion.fromEulerDegrees(0, 177, 0),
+    scale: Vector3.create(1.5, 1.5, 1.5)
   }, PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS)
 
   for (let i = 0; i < 20; i++) {
