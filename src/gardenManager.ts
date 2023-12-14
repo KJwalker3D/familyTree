@@ -1,7 +1,8 @@
-import { Animator, ColliderLayer, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, PointerEventsResult, Transform, engine, executeTask, pointerEventsSystem } from "@dcl/sdk/ecs"
+import { Animator, AudioSource, ColliderLayer, Entity, GltfContainer, InputAction, PointerEventType, PointerEvents, PointerEventsResult, Transform, engine, executeTask, pointerEventsSystem } from "@dcl/sdk/ecs"
 import { mainTree } from "./foliageTests"
 import { Vector3 } from "@dcl/sdk/math"
 import { QuestManager } from "./questManager"
+import { AudioManager } from "./audioManager"
 
 const gardenAssets = {
     brownSeeds: {
@@ -56,6 +57,8 @@ export class GardenManager {
 
     seedsPlanted: boolean = false
     active: boolean = false
+
+    growingSound: Entity
 
     static instance: GardenManager
 
@@ -124,6 +127,21 @@ export class GardenManager {
             }
             ]
         })
+
+        this.growingSound = engine.addEntity()
+        Transform.create(this.growingSound, {
+            position: Vector3.create(59, 30.5, 60)
+        })
+        AudioSource.create(this.growingSound, {
+            audioClipUrl: "sound/plantGrow.mp3",
+            playing: false,
+            loop: false,
+            volume: 0.8
+        })
+    }
+
+    playGrowing() {
+        AudioSource.getMutable(this.growingSound).playing = true
     }
 
     activate() {
@@ -217,12 +235,15 @@ export class GardenManager {
                                             this.updateGardenItem(GardenItem.WATER_TROUGH)
                                             pointerEventsSystem.removeOnPointerDown(this.waterTrough)
                                             this.setGardenHoverText("Water Seeds")
+                                            AudioManager.playSFXPing()
                                         }
                                     }
                                 )
+                                AudioManager.playSFXPing()
                             }
                         )
                         this.setGardenHoverText()
+                        AudioManager.playSFXPing()
                     }
                 }
                 else if (this.currentItem == GardenItem.WATER_TROUGH) {
@@ -230,6 +251,7 @@ export class GardenManager {
                     pointerEventsSystem.removeOnPointerDown(this.plant)
                     this.setGardenHoverText("Happy Plant")
                     QuestManager.makeProgress()
+                    this.playGrowing()
                 }
             }
         )
@@ -248,8 +270,10 @@ export class GardenManager {
     }
 
     addSeed(s: GardenItem) {
-        if (!this.collectedSeeds.includes(s))
+        if (!this.collectedSeeds.includes(s)) {
             this.collectedSeeds.push(s)
+            AudioManager.playSFXPing()
+        }
         if (this.hasAllSeeds()) {
             this.setGardenHoverText("Plant Seeds")
         }
