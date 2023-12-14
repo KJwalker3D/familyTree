@@ -52,16 +52,24 @@ class NPC {
                 type: npc.NPCType.CUSTOM,
                 model: "assets/Tala.glb",
                 onActivate: () => {
-                    npc.playAnimation(this.talaNpc, `Explain`, true)
+                    npc.playAnimation(this.talaNpc, `Explain`, false)
                     npc.talk(this.talaNpc, dialog, index)
+                },
+                onWalkAway: () => {
+                    this.playIdleAnim()
                 },
                 faceUser: true,
                 hoverText: "Talk",
                 portrait: "images/TalaPortrait.png",
                 coolDownDuration: 3,
+                idleAnim: 'ShortIdle',
                 walkingAnim: 'Walk'
             }
         )
+    }
+
+    playIdleAnim() {
+        npc.playAnimation(this.talaNpc, 'ShortIdle', false)
     }
 
     createTalaNoDialog(pos: Vector3 = Transform.get(this.talaNpc).position) {
@@ -76,7 +84,8 @@ class NPC {
                 faceUser: true,
                 hoverText: "Tala",
                 portrait: "images/TalaPortrait.png",
-                walkingAnim: 'Walk'
+                idleAnim: 'ShortIdle',
+                walkingAnim: 'Walk',
             }
         )
     }

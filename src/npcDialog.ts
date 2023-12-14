@@ -27,7 +27,10 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 3
         text: "See you!",
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 4
         text: "Time to hit the dance floor, my friend! Our parties are legendary, setting the vibe for our gatherings. But there's more to our hangouts, as you'll soon find in the upcoming tree houses.",
@@ -43,6 +46,9 @@ export const talaDialog: npc.Dialog[] = [
     { // 5 DANCE QUEST
         text: "Your first task: find the party area, and show me your sickest dance moves! There’s a dance-meter in the party area that will fill up as you dance, I’ll join you when it’s full. Let the celebrations kick off!",
         isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 6
         text: "Damn, those moves were fire! Here's a little something for your efforts.\n\nNow, follow me to the next part of our quest!",
@@ -79,6 +85,9 @@ export const talaDialog: npc.Dialog[] = [
     { // 9 SEED QUEST    
         text: "Your mission is to plant some seeds of your own! You’ll need to find the seeds first though, plant them in the middle here and water ‘em to watch the magic unfold.",
         isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 10
         text: "Your plants are thriving! From tiny seeds to this beauty – impressive, right?\nReady for the next chapter?",
@@ -96,7 +105,10 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 11
         text: "See you!",
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 12
         text: "Let's go!",
@@ -114,7 +126,10 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 13
         text: "As dreamers, we've got a Community Wishing Well. Collect the scrolls, jot down your wish, and toss it in the well. Who knows, maybe others are wishing for the same rad stuff!",
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 14
         text: "May your wish vibe with the community dreams. Take this token as a reminder.\nReady for the next adventure?",
@@ -132,7 +147,10 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 15
         text: "See you!",
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     },
     { // 16
         text: "Memories shape our journey, so we made Memory Lane to share some moments from 2023. There are so many more to add though, we could fill the whole tree!"
@@ -146,7 +164,10 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 18
         text: "Hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
     }
 
 
