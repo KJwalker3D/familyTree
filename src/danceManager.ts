@@ -59,6 +59,7 @@ export function addDanceManager() {
         if (danceMeterFull) {
             // Trigger an action when the dance meter is full
             if (QuestManager.currentQuestType() == QuestType.DANCE) {
+                danceMeter.stopUpdate()
                 QuestManager.makeProgress()
             }
         }
