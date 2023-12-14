@@ -6,11 +6,10 @@ import { setupUi } from './ui'
 import { Seed } from './classes/seed'
 import { addDanceManager } from './danceManager'
 import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
-import { engine, Transform, TextShape, executeTask, AudioStream } from '@dcl/ecs'
+import { engine, Transform, TextShape, executeTask, AudioSource } from '@dcl/ecs'
 import { createPainterPlatform } from './painterPlatform'
 import { getMessages, publishMessage } from './serverHandler'
 import * as utils from '@dcl-sdk/utils'
-import { ambientSound } from './audioStream'
 
 // Asset update explanation just in case
 // Garden folder contains garden assets positioned (will work with the tree transform) including glow effects for seeds
@@ -76,12 +75,13 @@ export function main() {
 
 function addAmbientSound() {
   const ambientEntity = engine.addEntity()
-  AudioStream.create(ambientEntity, {
-    url: ambientSound,
+  AudioSource.create(ambientEntity, {
+    audioClipUrl: "sound/ambient.mp3",
     playing: true,
-    volume: 0.8,
+    volume: 0.3,
   })
   Transform.create(ambientEntity, {
+    position: Vector3.create(0, 1, 0),
     parent: engine.CameraEntity
   })
 }
