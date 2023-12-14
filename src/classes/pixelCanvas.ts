@@ -27,7 +27,7 @@ export class PixelCanvas {
             }
             this.pixels.push(row)
         }
-        engine.addSystem(this.PointerReadingSystem.bind(this))
+        // engine.addSystem(this.PointerReadingSystem.bind(this)) // disable for now
     }
 
     PointerReadingSystem() {
