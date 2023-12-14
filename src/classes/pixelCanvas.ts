@@ -64,8 +64,8 @@ export class PixelCanvas {
     findPixelById(id: number) {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
-                const temp: any = this.pixels[x]
-                const p: Pixel = temp[y]
+                const temp: any = this.pixels[y]
+                const p: Pixel = temp[x]
                 if (p.entity.valueOf() == id) {
                     return p
                 }
