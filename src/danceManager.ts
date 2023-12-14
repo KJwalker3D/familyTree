@@ -5,11 +5,22 @@ import { onPlayerExpressionObservable } from '@dcl/sdk/observables'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { Vector3 } from '@dcl/sdk/math'
+import { GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { mainTree } from './foliageTests'
 
 
 export let isDancing: boolean = false
 
 export function addDanceManager() {
+    const lights = engine.addEntity()
+    GltfContainer.create(lights, {
+        src: "assets/partyArea/lights.glb",
+    })
+    Transform.create(lights, {
+        parent: mainTree
+    })
+
+
     // Multiplayer (p2p)
     const sceneMessageBus = new MessageBus()
     const danceMeter = new DanceMeter(
