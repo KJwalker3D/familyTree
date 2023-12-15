@@ -2,7 +2,6 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { addAssets } from './foliageTests'
 import { MAX_WELL_MESSAGES } from './utils'
 import { setupUi } from './ui'
-import { Seed } from './classes/seed'
 import { addDanceManager } from './danceManager'
 import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
 import { engine, Transform, TextShape, executeTask, AudioSource } from '@dcl/ecs'
@@ -30,10 +29,6 @@ export function main() {
   createOasisAssets()
 
   CanvasManager.activate()
-
-  for (let i = 0; i < 20; i++) {
-    new Seed({ position: Vector3.create(4 + (i * 2), 0, 4), rotation: Quaternion.fromEulerDegrees(i * 45, i * 45, i * 30), scale: Vector3.One() })
-  }
 
   // adding in clap meter and needle models which we can adapt to be a dance-o-meter for the first party area
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
