@@ -176,15 +176,7 @@ export function createPainterPlatform() {
     }
     createEmergencyButton()
 
-    //remove this after testing
-    const canvas = engine.addEntity()
-    Transform.create(canvas, {
-        position: position
-    })
-    GltfContainer.create(canvas, {
-        src: 'assets/oasis/canvasDemo.glb',
-        visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
-    })
+  
 
     function addPlatformButton(position: Vector3, rotation: Quaternion, scale: Vector3, action: string) {
         const platformButton = engine.addEntity()
