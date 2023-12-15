@@ -14,16 +14,9 @@ export let partyBGM: Entity = engine.addEntity()
 export let partyBGMLoud: Entity = engine.addEntity()
 
 let canDance: boolean = true
+let lights: any
 
 export function addDanceManager() {
-    const lights = engine.addEntity()
-    GltfContainer.create(lights, {
-        src: "assets/partyArea/lights.glb",
-    })
-    Transform.create(lights, {
-        parent: mainTree
-    })
-
     Transform.create(partyBGM, { position: Vector3.create(70, 23, 31) })
     AudioSource.create(partyBGM, {
         audioClipUrl: "sound/partyDance.mp3",
@@ -81,6 +74,7 @@ export function addDanceManager() {
             // Trigger an action when the dance meter is full
             if (QuestManager.currentQuestType() == QuestType.DANCE) {
                 canDance = false
+                engine.removeEntity(lights)
                 danceMeter.stopUpdate()
                 QuestManager.nextStep()
                 QuestManager.endQuest()
@@ -90,6 +84,13 @@ export function addDanceManager() {
 }
 
 export function startParty() {
+    lights = engine.addEntity()
+    GltfContainer.create(lights, {
+        src: "assets/partyArea/lights.glb",
+    })
+    Transform.create(lights, {
+        parent: mainTree
+    })
     AudioSource.getMutable(partyBGM).playing = false
     AudioSource.getMutable(partyBGMLoud).playing = true
 
