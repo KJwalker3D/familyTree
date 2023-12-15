@@ -257,7 +257,6 @@ export class GardenManager {
                 }
             }
         )
-
     }
 
     deactivate() {
@@ -279,7 +278,16 @@ export class GardenManager {
         if (this.hasAllSeeds()) {
             this.setGardenHoverText("Plant Seeds")
             QuestManager.nextStep()
+            this.addLump()
         }
+    }
+
+    addLump() {
+        const lump = engine.addEntity()
+        GltfContainer.create(lump, {
+            src: "assets/garden/lump.glb"
+        })
+        Transform.create(lump, { position: Vector3.create(0, 0, 0), parent: mainTree })
     }
 
     updateGardenItem(item: GardenItem) {
