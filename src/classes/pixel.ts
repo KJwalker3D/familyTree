@@ -1,6 +1,7 @@
 import { Entity, InputAction, Material, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, Transform, TransformType, engine, pointerEventsSystem } from "@dcl/sdk/ecs"
 import { Color4, Vector3 } from "@dcl/sdk/math"
 import { Vector2 } from "~system/EngineApi"
+import { CanvasManager } from "../canvasManager"
 
 export class Pixel {
     entity: Entity
@@ -44,7 +45,10 @@ export class Pixel {
             }
         },
             () => {
-                this.paint(this.color.r == Color4.White().r ? Color4.Black() : Color4.White())
+                if (CanvasManager.colorIndex >= 0 && CanvasManager.colorIndex < CanvasManager.colors.length) {
+                    const c = CanvasManager.colors[CanvasManager.colorIndex].rgba
+                    this.paint(this.color.r == c.r && this.color.g == c.g && this.color.b == c.b ? Color4.White() : c)
+                }
             }
         )
     }

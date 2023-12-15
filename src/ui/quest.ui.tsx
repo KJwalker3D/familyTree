@@ -1,43 +1,7 @@
-import { Color4 } from "@dcl/sdk/math"
 import ReactEcs, { Label, UiEntity } from "@dcl/sdk/react-ecs"
 import { QuestManager } from "../questManager"
 import { UiCanvasInformation, engine } from "@dcl/sdk/ecs"
-import { THEME, UI_ATLAS, getUVs } from "../utils"
-
-const coords = {
-    questBG: {
-        sourceLeft: 0.25,
-        sourceRight: 1,
-        sourceTop: 0.53,
-        sourceBottom: 0
-    },
-    questHeader: {
-        sourceLeft: 0,
-        sourceRight: 0.362,
-        sourceTop: 1,
-        sourceBottom: 0.85
-    },
-    quest: {
-        sourceLeft: 0.364,
-        sourceRight: 1,
-        sourceTop: 1,
-        sourceBottom: 0.84
-    },
-    quest_todo: {
-        sourceLeft: 0,
-        sourceRight: 0.122,
-        sourceTop: 0.47,
-        sourceBottom: 0.36
-    },
-    quest_done: {
-        sourceLeft: 0.126,
-        sourceRight: 0.248,
-        sourceTop: 0.47,
-        sourceBottom: 0.36
-    }
-}
-
-
+import { THEME, UI_ATLAS, coords, getUVs } from "../utils"
 
 class questHud {
     module() {
@@ -60,6 +24,7 @@ class questHud {
                         src: UI_ATLAS
                     }
                 }}
+                onMouseDown={() => { }}
             >
                 <UiEntity
                     uiTransform={{
@@ -81,11 +46,10 @@ class questHud {
                     }}
                 >
                     <Label
-                        onMouseDown={() => { console.log('Player Position clicked !') }}
                         value={`QUEST`}
                         fontSize={24}
                         color={THEME.COLOR}
-                        uiTransform={{ width: '100%', height: 30, margin: '24px 0 0 0' }}
+                        uiTransform={{ width: '100%', height: 30, margin: '22px 0 0 0' }}
                     />
                 </UiEntity>
 
@@ -138,6 +102,5 @@ class questHud {
         )
     }
 }
-
 
 export const QuestHUD = new questHud()
