@@ -25,17 +25,19 @@ const coords = {
     },
     quest_todo: {
         sourceLeft: 0,
-        sourceRight: 0.12,
+        sourceRight: 0.122,
         sourceTop: 0.47,
         sourceBottom: 0.36
     },
     quest_done: {
-        sourceLeft: 0.12,
-        sourceRight: 0.245,
+        sourceLeft: 0.126,
+        sourceRight: 0.248,
         sourceTop: 0.47,
         sourceBottom: 0.36
     }
 }
+
+
 
 class questHud {
     module() {
@@ -125,7 +127,7 @@ class questHud {
                             <Label
                                 value={`${v.text}`}
                                 fontSize={18}
-                                color={v.complete ? Color4.Gray() : THEME.COLOR}
+                                color={THEME.COLOR}
                                 uiTransform={{ width: '100%', height: '100%', margin: '-2 0 0 0' }}
                                 textAlign="middle-center"
                             />

@@ -6,7 +6,10 @@ import { NPCManager } from './npcManager'
 
 export const talaDialog: npc.Dialog[] = [
     { // 0 TALA TALK QUEST
-        text: "Hey there, adventurer! Welcome to our End-of-Year Bash in the heart of Decentraland.\n\nI'm Tala, your guide for this epic journey."
+        text: "Hey there, adventurer! Welcome to our End-of-Year Bash in the heart of Decentraland.\n\nI'm Tala, your guide for this epic journey.",
+        triggeredByNext: () => {
+            QuestManager.nextStep()
+        }
     },
     { // 1
         text: "While you're exploring, you'll stumble upon our wild party zone, the chill garden, the wishing well, Memory Lane, and the ultra-cool Digital Nomad’s Oasis."
@@ -38,8 +41,8 @@ export const talaDialog: npc.Dialog[] = [
         triggeredByNext: () => {
             // Start dance quest
             if (QuestManager.currentQuestType() == QuestType.TALK_TALA) {
-                QuestManager.nextStep()
-
+                QuestManager.endQuest()
+                QuestManager.nextQuest()
             }
         }
     },
@@ -52,7 +55,6 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 6
         text: "Damn, those moves were fire! Here's a little something for your efforts.\n\nNow, follow me to the next part of our quest!",
-
     },
     { // 7
         text: "Next stop, our secret garden, where ideas take root and bloom. It’s a chill spot where we plant the seeds of growth.",
@@ -74,6 +76,7 @@ export const talaDialog: npc.Dialog[] = [
         text: "Your mission is to plant some seeds of your own! You’ll need to find the seeds first though, plant them in the middle here and water ‘em to watch the magic unfold.",
         isEndOfDialog: true,
         triggeredByNext: () => {
+            QuestManager.nextQuest()
             NPCManager.createTalaNoDialog()
             npc.followPath(NPCManager.talaNpc, {
                 path: NPCManager.pathAtGarden,
@@ -134,6 +137,7 @@ export const talaDialog: npc.Dialog[] = [
         text: "As dreamers, we've got a Community Wishing Well. Collect the scrolls, jot down your wish, and toss it in the well. Who knows, maybe others are wishing for the same rad stuff!",
         isEndOfDialog: true,
         triggeredByNext: () => {
+            QuestManager.nextQuest()
             NPCManager.playIdleAnim()
         }
     },

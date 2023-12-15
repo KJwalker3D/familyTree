@@ -5,7 +5,7 @@ import { onPlayerExpressionObservable } from '@dcl/sdk/observables'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { Vector3 } from '@dcl/sdk/math'
-import { AudioSource, Entity, GltfContainer, Transform, engine } from '@dcl/sdk/ecs'
+import { AudioSource, ColliderLayer, Entity, GltfContainer, MeshCollider, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
 import { mainTree } from './foliageTests'
 
 
@@ -13,6 +13,7 @@ export let isDancing: boolean = false
 export let partyBGM: Entity = engine.addEntity()
 export let partyBGMLoud: Entity = engine.addEntity()
 
+let canDance: boolean = true
 
 export function addDanceManager() {
     const lights = engine.addEntity()
@@ -52,7 +53,8 @@ export function addDanceManager() {
     let danceCooldownTimer: ReturnType<typeof utils.timers.setTimeout> | null = null
     // Listen for dancing
     onPlayerExpressionObservable.add(({ expressionId }) => {
-        if (expressionId == 'dance' || expressionId == 'robot' || expressionId == 'tik' || expressionId == 'hammer' || expressionId == 'tektonik' || expressionId == 'disco') {
+        if (canDance &&
+            (expressionId == 'dance' || expressionId == 'robot' || expressionId == 'tik' || expressionId == 'hammer' || expressionId == 'tektonik' || expressionId == 'disco')) {
             console.log('dance detected')
             if (QuestManager.currentQuestType() != QuestType.DANCE) return
 
@@ -78,8 +80,10 @@ export function addDanceManager() {
         if (danceMeterFull) {
             // Trigger an action when the dance meter is full
             if (QuestManager.currentQuestType() == QuestType.DANCE) {
+                canDance = false
                 danceMeter.stopUpdate()
                 QuestManager.nextStep()
+                QuestManager.endQuest()
             }
         }
     })
@@ -88,4 +92,23 @@ export function addDanceManager() {
 export function startParty() {
     AudioSource.getMutable(partyBGM).playing = false
     AudioSource.getMutable(partyBGMLoud).playing = true
+
+    // Add trigger for finding party area
+    const trigger = engine.addEntity()
+    // MeshRenderer.setBox(trigger)
+    Transform.create(trigger, {
+        position: Vector3.create(57, 21, 17),
+        scale: Vector3.create(6, 3, 6)
+    })
+
+    utils.triggers.oneTimeTrigger(
+        trigger,
+        utils.NO_LAYERS,
+        utils.LAYER_1,
+        [{ type: 'box' }],
+        function (otherEntity) {
+            // console.log(`triggered by ${otherEntity}!`)
+            QuestManager.nextStep()
+        }
+    )
 }

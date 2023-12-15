@@ -244,12 +244,14 @@ export class GardenManager {
                         )
                         this.setGardenHoverText()
                         AudioManager.playSFXPing()
+                        QuestManager.nextStep()
                     }
                 }
                 else if (this.currentItem == GardenItem.WATER_TROUGH) {
                     Animator.playSingleAnimation(this.plant, 'play')
                     pointerEventsSystem.removeOnPointerDown(this.plant)
                     this.setGardenHoverText("Happy Plant")
+                    QuestManager.endQuest()
                     QuestManager.nextStep()
                     this.playGrowing()
                 }
@@ -276,6 +278,7 @@ export class GardenManager {
         }
         if (this.hasAllSeeds()) {
             this.setGardenHoverText("Plant Seeds")
+            QuestManager.nextStep()
         }
     }
 

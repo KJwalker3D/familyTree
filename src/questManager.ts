@@ -35,7 +35,9 @@ class QuestM {
             QuestType.WISHING_WELL,
             "Write a message at the wishing well",
             [
-                new QuestStep("Talk to Tala")
+                new QuestStep("Find paper"),
+                new QuestStep("Write a message"),
+                new QuestStep("Put it into the well"),
             ]
         ),
         new Quest(
@@ -63,7 +65,6 @@ class QuestM {
     ]
 
     constructor() {
-        this.quests[0].hidden = false
     }
 
     currentQuestType(): QuestType {
@@ -74,20 +75,13 @@ class QuestM {
         if (this.currentIndex < this.quests.length) {
             const currenqtQ = this.quests[this.currentIndex]
             // check if current quest is complete
-            if (currenqtQ.progress >= currenqtQ.goal || currenqtQ.complete) {
-                this.endQuest()
-                currenqtQ.progress = currenqtQ.goal
-                currenqtQ.complete = true
-                if (this.currentIndex + 1 < this.quests.length) {
-                    this.quests[this.currentIndex + 1].hidden = false
+            for (let i = 0; i < currenqtQ.steps.length; i++) {
+                if (!currenqtQ.steps[i].complete) {
+                    console.log("quest not complete")
+                    return
                 }
-                this.currentIndex++
-                this.startQuest()
             }
-            // check if all quests complete
-            if (this.currentIndex + 1 >= this.quests.length) {
-
-            }
+            currenqtQ.complete = true
         } else {
             console.log("No quests left!")
         }
@@ -103,7 +97,6 @@ class QuestM {
     endQuest() {
         NPCManager.endQuest()
         if (this.currentQuestType() == QuestType.TALK_TALA) {
-
             startParty()
         }
         else if (this.currentQuestType() == QuestType.DANCE) {
@@ -120,19 +113,20 @@ class QuestM {
         for (let i = 0; i < steps.length; i++) {
             if (!steps[i].complete) {
                 steps[i].complete = true
-                if (i + 1 == steps.length) this.makeProgress()
+                this.checkProgress()
                 return
             }
         }
     }
 
-    makeProgress() {
-        if (this.currentIndex < this.quests.length) {
-            const currenqtQ = this.quests[this.currentIndex]
-            if (currenqtQ.progress < currenqtQ.goal || !currenqtQ.complete) {
-                currenqtQ.progress++
+    nextQuest() {
+        if (this.currentIndex + 1 < this.quests.length && this.quests[this.currentIndex].complete) {
+            this.currentIndex++
+            this.startQuest()
+            // check if all quests complete
+            if (this.currentIndex + 1 >= this.quests.length) {
+
             }
-            this.checkProgress()
         } else {
             console.log("No quests left!")
         }

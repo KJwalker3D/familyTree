@@ -16,6 +16,8 @@ export const danceMeterBoard = engine.addEntity()
 // Export danceMeterFull variable
 export let danceMeterFull: boolean = false
 
+let danceSystem: any
+
 export class DanceMeter {
     private currentNeedleRotation: number = START_ANGLE
     private cooldownRemaining: number = 0
@@ -50,11 +52,11 @@ export class DanceMeter {
         })
 
         // Register the updateNeedle system to the engine
-        engine.addSystem(this.updateNeedle)
+        danceSystem = engine.addSystem(this.updateNeedle)
     }
 
     stopUpdate() {
-        engine.removeSystem(this.updateNeedle)
+        engine.removeSystem(danceSystem)
     }
 
     public updateNeedle: SystemFn = (dt: number) => {

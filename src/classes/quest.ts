@@ -11,17 +11,13 @@ export enum QuestType {
 export class Quest {
     type: QuestType
     text: string
-    progress: number = 0
-    goal: number
     complete: boolean = false
-    hidden: boolean = true
 
     steps: QuestStep[]
 
-    constructor(type: QuestType, text: string, steps: QuestStep[], goal: number = 1) {
+    constructor(type: QuestType, text: string, steps: QuestStep[]) {
         this.type = type
         this.text = text
-        this.goal = goal
         this.steps = steps
     }
 }
