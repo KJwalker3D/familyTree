@@ -1,7 +1,6 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { PixelCanvas } from './classes/pixelCanvas'
 import { addAssets } from './foliageTests'
-import { MAX_WELL_MESSAGES, PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from './utils'
+import { MAX_WELL_MESSAGES } from './utils'
 import { setupUi } from './ui'
 import { Seed } from './classes/seed'
 import { addDanceManager } from './danceManager'
@@ -11,6 +10,7 @@ import { createPainterPlatform } from './painterPlatform'
 import { getMessages, publishMessage } from './serverHandler'
 import * as utils from '@dcl-sdk/utils'
 import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
+import { CanvasManager } from './canvasManager'
 
 // Asset update explanation just in case
 // Garden folder contains garden assets positioned (will work with the tree transform) including glow effects for seeds
@@ -29,11 +29,7 @@ export function main() {
   createWishingWellAnim()
   createOasisAssets()
 
-  new PixelCanvas({
-    position: Vector3.create(62, 75.2, 83),
-    rotation: Quaternion.fromEulerDegrees(0, 177, 0),
-    scale: Vector3.create(1.5, 1.5, 1.5)
-  }, PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS)
+  CanvasManager.activate()
 
   for (let i = 0; i < 20; i++) {
     new Seed({ position: Vector3.create(4 + (i * 2), 0, 4), rotation: Quaternion.fromEulerDegrees(i * 45, i * 45, i * 30), scale: Vector3.One() })
