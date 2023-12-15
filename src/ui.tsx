@@ -5,7 +5,7 @@ import {
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { Cube } from './components'
-import { createCube } from './factory'
+
 import { QuestHUD } from './ui/quest.ui'
 import { NpcUtilsUi } from 'dcl-npc-toolkit'
 

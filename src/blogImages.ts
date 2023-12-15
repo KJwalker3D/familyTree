@@ -52,7 +52,7 @@ export const imagePositions: Vector3[] = [
     Vector3.create(10.935, 54.79, 16.39),
     Vector3.create(4.78, 56.19, 26.38),
     Vector3.create(-5.34, 57, 19.81),
-    Vector3.create(-19.92, 57.03, 19.986),
+    Vector3.create(-19.92, 57.33, 19.986),
     Vector3.create(-17.761, 56.5, 5.934),
     Vector3.create(-21.511, 55.15, -7.56),
     Vector3.create(-10.21, 54.7, -16.78),
