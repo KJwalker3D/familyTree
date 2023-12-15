@@ -98,7 +98,7 @@ export function startParty() {
     // MeshRenderer.setBox(trigger)
     Transform.create(trigger, {
         position: Vector3.create(57, 21, 17),
-        scale: Vector3.create(6, 3, 6)
+        scale: Vector3.create(10, 5, 10)
     })
 
     utils.triggers.oneTimeTrigger(
