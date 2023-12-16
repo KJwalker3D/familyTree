@@ -15,7 +15,7 @@ class questHud {
                     padding: 4,
                     flexDirection: 'column',
                     positionType: "absolute",
-                    position: `128px 0 0 ${UiCanvasInformation.get(engine.RootEntity).width - 400}`
+                    position: `10% 0 0 ${UiCanvasInformation.get(engine.RootEntity).width - 400}`
                 }}
                 uiBackground={{
                     textureMode: "stretch",
