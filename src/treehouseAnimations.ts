@@ -46,20 +46,7 @@ export function createWishingWellAnim() {
        position: position
    })
 
-   const fire = engine.addEntity()
-   GltfContainer.create(fire, {
-       src: 'assets/wishingWell/fire.glb'
-   })
-   Transform.create(fire, {
-       position: position
-   })
-   Animator.create(fire, {
-       states: [{
-           clip: 'IdleSmallSmoke',
-           playing: true,
-           loop: true
-       }]
-   })
+   
 }
 
 export function createOasisAssets() {

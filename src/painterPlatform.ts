@@ -20,7 +20,7 @@ export function createPainterPlatform() {
     //pixel canvas height 82.78
     const platform = engine.addEntity()
     Transform.create(platform, {
-        position: Vector3.create(47, 73.5, 75),
+        position: Vector3.create(47, 75, 80.4),
         rotation: Quaternion.fromEulerDegrees(0, 0, 0)
     })
     GltfContainer.create(platform, {
