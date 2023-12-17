@@ -20,7 +20,7 @@ const uiComponent = () => [
     <UiEntity
       uiTransform={{
         width: 400,
-        height: 230,
+        height: 80,
         margin: '16px 0 8px 270px',
         padding: 4,
       }}
@@ -30,47 +30,73 @@ const uiComponent = () => [
         uiTransform={{
           width: '100%',
           height: '100%',
-          flexDirection: 'column',
+          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}
         uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
       >
-        <UiEntity
-          uiTransform={{
-            width: '100%',
-            height: 50,
-            margin: '8px 0'
-          }}
-          uiBackground={{
-            textureMode: 'center',
-            texture: {
-              src: 'images/scene-thumbnail.png',
-            },
-          }}
-          uiText={{ value: 'SDK7', fontSize: 18 }}
-        />
-        <Label
-          onMouseDown={() => { console.log('Player Position clicked !') }}
-          value={`Player: ${getPlayerPosition()}`}
-          fontSize={18}
-          uiTransform={{ width: '100%', height: 30 }}
-        />
-        <Label
-          onMouseDown={() => { console.log('# Cubes clicked !') }}
-          value={`# Cubes: ${[...engine.getEntitiesWith(Cube)].length}`}
-          fontSize={18}
-          uiTransform={{ width: '100%', height: 30 }}
-        />
         <Button
           uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Teleport'
+          value='Dance'
           variant='primary'
           fontSize={14}
           onMouseDown={() => {
             movePlayerTo(
               {
-                newRelativePosition: Vector3.create(44, 20, 17) // Vector3.create(48, 74, 75)
+                newRelativePosition: Vector3.create(44, 20, 17) // dance
+              }
+            )
+          }}
+        />
+        <Button
+          uiTransform={{ width: 100, height: 40, margin: 8 }}
+          value='Garden'
+          variant='primary'
+          fontSize={14}
+          onMouseDown={() => {
+            movePlayerTo(
+              {
+                newRelativePosition: Vector3.create(63, 30, 59) // garden
+              }
+            )
+          }}
+        />
+        <Button
+          uiTransform={{ width: 100, height: 40, margin: 8 }}
+          value='Well'
+          variant='primary'
+          fontSize={14}
+          onMouseDown={() => {
+            movePlayerTo(
+              {
+                newRelativePosition: Vector3.create(15, 41, 56) // wishing well
+              }
+            )
+          }}
+        />
+        <Button
+          uiTransform={{ width: 100, height: 40, margin: 8 }}
+          value='Trivia'
+          variant='primary'
+          fontSize={14}
+          onMouseDown={() => {
+            movePlayerTo(
+              {
+                newRelativePosition: Vector3.create(45, 54, 16) // trivia
+              }
+            )
+          }}
+        />
+        <Button
+          uiTransform={{ width: 100, height: 40, margin: 8 }}
+          value='Oasis'
+          variant='primary'
+          fontSize={14}
+          onMouseDown={() => {
+            movePlayerTo(
+              {
+                newRelativePosition: Vector3.create(48, 74, 75) // oasis
               }
             )
           }}
