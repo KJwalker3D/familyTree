@@ -1,13 +1,18 @@
 import { ColliderLayer, Entity, GltfContainer, InputAction, MeshCollider, TextShape, Transform, engine, executeTask, pointerEventsSystem } from "@dcl/sdk/ecs"
 import { mainTree } from "./foliageTests"
-import { getMessages } from "./serverHandler"
+import { getMessages, publishMessage } from "./serverHandler"
 import { MAX_WELL_MESSAGES } from "./utils"
-import { Quaternion, Vector3 } from "@dcl/ecs-math"
+import { Color4, Quaternion, Vector3 } from "@dcl/ecs-math"
 import * as utils from '@dcl-sdk/utils'
+import *  as  ui from 'dcl-ui-toolkit'
+import { QuestManager } from "./questManager"
 
 export class WishManager {
     scrolls: Entity[] = []
     scrollsCollected: number = 0
+
+    messagePrompt: ui.FillInPrompt
+    messageWritten: boolean = false
 
     static instance: WishManager
 
@@ -29,6 +34,27 @@ export class WishManager {
             this.scrolls.push(e)
         }
 
+        this.messagePrompt = ui.createComponent(ui.FillInPrompt, {
+            title: 'Make a wish',
+            onAccept: (value: string) => {
+                if (value.length <= 50) {
+                    this.messageWritten = true
+                    this.messagePrompt.hide()
+                    publishMessage(value).then(() => {
+                        this.showMessages()
+                        QuestManager.endQuest()
+                        QuestManager.nextStep()
+                    })
+                } else {
+                    this.messagePrompt.titleElement.value = "Over 50 characters!"
+                    this.messagePrompt.titleElement.color = Color4.Red()
+                }
+                console.log('accepted value:', value)
+            },
+            placeholder: "50 char limit",
+            useDarkTheme: true,
+            startHidden: true
+        })
     }
 
     hasAllScrolls() {
@@ -52,8 +78,9 @@ export class WishManager {
                 }
             },
             () => {
-                this.showMessages()
-
+                if (!this.messageWritten && !this.messagePrompt.isVisible()) {
+                    this.messagePrompt.show()
+                }
             }
         )
     }
@@ -71,8 +98,10 @@ export class WishManager {
                 () => {
                     engine.removeEntity(e)
                     this.scrollsCollected++
-                    if (this.hasAllScrolls())
+                    if (this.hasAllScrolls()) {
                         this.activateWell()
+                        QuestManager.nextStep()
+                    }
                 }
             )
         })

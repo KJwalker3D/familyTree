@@ -16,6 +16,7 @@ class NPC {
         { position: Vector3.create(44, 30.2, 67) }, // 3 garden 2
         { position: Vector3.create(53, 29.3, 62.5) }, // 4 garden 3 (end quest)
         { position: Vector3.create(13, 40, 59) }, // 5 well 1
+        { position: Vector3.create(12, 40.3, 44) }, // 6 well 2 (end quest)
     ]
 
     pathToGarden: Vector3[] = [
@@ -113,6 +114,10 @@ class NPC {
             case QuestType.SEEDS:
                 this.createTala(this.talaPositions[4], talaDialog, 10, "Cool")
                 npc.talk(this.talaNpc, talaDialog, 10,)
+                break
+            case QuestType.WISHING_WELL:
+                this.createTala(this.talaPositions[6], talaDialog, 14, "Cool")
+                npc.talk(this.talaNpc, talaDialog, 14)
                 break
         }
     }

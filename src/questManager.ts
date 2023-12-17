@@ -36,8 +36,7 @@ class QuestM {
             "Write a message at the wishing well",
             [
                 new QuestStep("Find 8 scrolls"),
-                new QuestStep("Write a message"),
-                new QuestStep("Put it into the well"),
+                new QuestStep("Make a wish at the well")
             ]
         ),
         new Quest(

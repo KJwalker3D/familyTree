@@ -142,7 +142,7 @@ export const talaDialog: npc.Dialog[] = [
         }
     },
     { // 14
-        text: "May your wish vibe with the community dreams. Take this token as a reminder.\nReady for the next adventure?",
+        text: "May your wish vibe with the community dreams. Take this token as a reminder. Ready for the next adventure?",
         isQuestion: true,
         buttons: [
             {
@@ -169,7 +169,9 @@ export const talaDialog: npc.Dialog[] = [
         text: "Anyway, hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
         isEndOfDialog: true,
         triggeredByNext: () => {
-            NPCManager.createTala(NPCManager.talaPositions[5], talaDialog, 18)
+            // give emote(?)
+            QuestManager.nextQuest()
+            NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 19)
         }
     },
     { // 18
