@@ -26,7 +26,7 @@ class QuestM {
             QuestType.SEEDS,
             "Find, plant and water seeds",
             [
-                new QuestStep("Find the seeds"),
+                new QuestStep("Find 3 seeds"),
                 new QuestStep("Plant the seeds"),
                 new QuestStep("Water the seeds")
             ]
@@ -35,7 +35,7 @@ class QuestM {
             QuestType.WISHING_WELL,
             "Write a message at the wishing well",
             [
-                new QuestStep("Find paper"),
+                new QuestStep("Find 8 scrolls"),
                 new QuestStep("Write a message"),
                 new QuestStep("Put it into the well"),
             ]
