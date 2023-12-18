@@ -1,6 +1,8 @@
 import { Quaternion, Vector3 } from "@dcl/sdk/math"
 import { Pixel } from "./pixel"
-import { Entity, engine, TransformType, Transform, PointerEventsResult, PointerEventType } from "@dcl/sdk/ecs"
+import { Entity, engine, TransformType, Transform, PointerEventsResult, PointerEventType, Material } from "@dcl/sdk/ecs"
+import { syncEntity } from "@dcl/sdk/network"
+import * as utils from '@dcl-sdk/utils'
 
 export class PixelCanvas {
     root: Entity
@@ -14,6 +16,7 @@ export class PixelCanvas {
         this.cols = cols
         this.rows = rows
         Transform.create(this.root, parent)
+        let syncId = 0
         for (let y = 0; y < rows; y++) {
             const row: any = []
             for (let x = 0; x < cols; x++) {
@@ -24,6 +27,10 @@ export class PixelCanvas {
                     parent: this.root
                 },
                     { x: x, y: y }))
+                utils.timers.setTimeout(() => {
+                    syncEntity(row[x].entity, [Material.componentId], syncId)
+                    syncId++
+                }, 1000)
             }
             this.pixels.push(row)
         }

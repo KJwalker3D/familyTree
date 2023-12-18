@@ -1,9 +1,7 @@
 import { Entity, InputAction, Material, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, Transform, TransformType, engine, pointerEventsSystem } from "@dcl/sdk/ecs"
 import { Color4, Vector3 } from "@dcl/sdk/math"
-import { syncEntity } from "@dcl/sdk/network"
 import { Vector2 } from "~system/EngineApi"
 import { CanvasManager } from "../canvasManager"
-import * as utils from '@dcl-sdk/utils'
 
 export class Pixel {
     entity: Entity
@@ -18,10 +16,6 @@ export class Pixel {
         Transform.create(this.entity, transform)
         this.index = index
         this.paint()
-
-        utils.timers.setTimeout(() => {
-            syncEntity(this.entity, [Material.componentId])
-        }, 1000)
 
         PointerEvents.createOrReplace(this.entity, {
             pointerEvents: [
