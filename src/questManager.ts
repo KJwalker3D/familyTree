@@ -2,6 +2,7 @@ import { Quest, QuestStep, QuestType } from "./classes/quest"
 import { startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
+import { WishManager } from "./wishManager"
 
 
 class QuestM {
@@ -43,7 +44,7 @@ class QuestM {
             QuestType.TRIVIA,
             "Answer trivia questions",
             [
-                new QuestStep("Talk to Tala")
+                new QuestStep("Answer trivia")
             ]
 
         ),
@@ -100,6 +101,9 @@ class QuestM {
         }
         else if (this.currentQuestType() == QuestType.DANCE) {
             // give wearable(?)
+        }
+        else if (this.currentQuestType() == QuestType.SEEDS) {
+            WishManager.getInstance().activate()
         }
     }
 
