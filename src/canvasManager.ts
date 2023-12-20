@@ -1,7 +1,7 @@
 import { Color4, Quaternion, Vector3 } from "@dcl/sdk/math"
 import { PixelCanvas } from "./classes/pixelCanvas"
 import { PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS } from "./utils"
-import { InputAction, PointerEventType, engine, inputSystem } from "@dcl/sdk/ecs"
+import { Entity, InputAction, MeshCollider, MeshRenderer, PointerEventType, Transform, engine, inputSystem } from "@dcl/sdk/ecs"
 
 
 class Canvas {
@@ -97,7 +97,18 @@ class Canvas {
     isActive: boolean = false
     colorIndex: number = 0
 
+    oasisBlocker: Entity
+
     constructor() {
+        this.oasisBlocker = engine.addEntity()
+        Transform.create(this.oasisBlocker,
+            {
+                position: Vector3.create(75, 74, 55),
+                scale: Vector3.create(10, 8, 10)
+            }
+        )
+        // MeshRenderer.setBox(this.oasisBlocker)
+        MeshCollider.setBox(this.oasisBlocker)
 
     }
 
