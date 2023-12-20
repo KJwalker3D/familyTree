@@ -15,8 +15,9 @@ export const lostDialog: npc.Dialog[] = [
         text: "Count me in! By the way, I heard there's a dope show there soon. Check out the events page so we don't miss the vibe!",
         isEndOfDialog: true,
         triggeredByNext: () => {
+            QuestManager.nextStep()
             // Start following player
-
+            NPCManager.startFollowLost()
         }
     }
 ]
@@ -172,7 +173,6 @@ export const talaDialog: npc.Dialog[] = [
         text: "Memories shape our journey, so we made Memory Lane to share some moments from 2023. There are so many more to add though, we could fill the whole tree!",
         isEndOfDialog: true,
         triggeredByNext: () => {
-            // give emote(?)
             QuestManager.nextQuest()
         }
     },
@@ -449,5 +449,33 @@ export const talaDialog: npc.Dialog[] = [
     { // 34
         text: "Your job is to find a lost player from our quest and bring them here. In return, I’ll hook you both up with magic tokens for the special place.",
         isEndOfDialog: true
+    },
+    { // 35
+        text: "You nailed it! The oasis is waiting. When you dive in, go ahead and add your creative touch to our virtual gallery."
+    },
+    { // 36
+        text: "Take this POAP token – your key to the digital nomad life. Ready to create your pixel masterpiece?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Not yet.",
+                goToDialog: 37
+            },
+            {
+                label: "Yes!",
+                goToDialog: 38
+            },
+        ]
+    },
+    { // 37
+        text: "Come back when you're ready.",
+        isEndOfDialog: true
+    },
+    { // 38
+        text: "Head up to the top of the tree where the oasis awaits.",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            QuestManager.nextQuest()
+        }
     }
 ]

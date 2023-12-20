@@ -4,12 +4,16 @@ import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { lostDialog, talaDialog } from './npcDialog'
+import * as utils from '@dcl-sdk/utils'
 
 
 class NPC {
     talaNpc: any
     triviaNpc: any
     lostNpc: any
+
+    lostUpdateId: number = -1
+    lostFollowId: number = -1
 
     talaPositions: any[] = [
         { position: Vector3.create(78, 0, 32), rotation: Quaternion.fromEulerDegrees(0, 120, 0) }, // 0 start
@@ -45,8 +49,10 @@ class NPC {
     ]
 
     lostStartingPos: TransformType = { position: Vector3.create(66.6, 26.2, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() }
-
-    lostCanTalk: boolean = false
+    lostFollowPath: Vector3[] = []
+    lostCanTalk: boolean = true// false
+    lostToTalaSystemInstance: any
+    hasLostReachedTala: boolean = false
 
     constructor() {
         this.createTala(this.talaPositions[0], talaDialog)
@@ -73,6 +79,54 @@ class NPC {
             }
         )
         AvatarShape.getMutable(this.lostNpc).name = ""
+    }
+
+    startFollowLost() {
+        AvatarShape.getMutable(this.lostNpc).name = "Following"
+        this.lostCanTalk = false
+        this.lostUpdateId = utils.timers.setInterval(() => {
+            const p = Transform.get(engine.PlayerEntity).position
+            if (this.lostFollowPath.length == 0 || !Vector3.equals(this.lostFollowPath[this.lostFollowPath.length - 1], p))
+                if (Vector3.distanceSquared(p, Transform.get(this.lostNpc).position) > 30)
+                    if (this.lostFollowPath.length == 0 || Vector3.distanceSquared(p, this.lostFollowPath[this.lostFollowPath.length - 1]) > 20)
+                        this.lostFollowPath.push(Vector3.create(p.x, p.y - .9, p.z))
+        }, 500)
+
+        this.lostFollowId = utils.timers.setInterval(() => {
+            if (this.lostFollowPath.length > 0 && !Vector3.equals(Transform.get(this.lostNpc).position, this.lostFollowPath[this.lostFollowPath.length - 1])) {
+                npc.followPath(this.lostNpc, {
+                    path: this.lostFollowPath,
+                    totalDuration: 2,
+                    pathType: npc.NPCPathType.SMOOTH_PATH,
+                    curve: true,
+                    onFinishCallback: () => {
+                        // console.log("FINISHED AT", Transform.get(this.lostNpc).position)
+                    }
+                })
+                this.lostFollowPath = []
+            }
+        }, 2000)
+
+        this.lostToTalaSystemInstance = engine.addSystem(this.lostToTalaSystem.bind(this))
+    }
+
+    stopFollowLost() {
+        utils.timers.clearInterval(this.lostUpdateId)
+        utils.timers.clearInterval(this.lostFollowId)
+        engine.removeSystem(this.lostToTalaSystemInstance)
+        AvatarShape.getMutable(this.lostNpc).name = "Thank you!"
+    }
+
+    lostToTalaSystem(dt: number) {
+        if (this.hasLostReachedTala) return
+        const dist = Vector3.distanceSquared(Transform.get(engine.PlayerEntity).position, Transform.get(this.talaNpc).position)
+        if (dist < 100) {
+            // returned to tala
+            QuestManager.nextStep()
+            QuestManager.endQuest()
+            this.stopFollowLost()
+            this.hasLostReachedTala = true
+        }
     }
 
     removeTrivia() {
@@ -183,8 +237,6 @@ class NPC {
                 NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 19)
                 break
         }
-
-
     }
 
     endQuest() {
@@ -210,6 +262,9 @@ class NPC {
                 NPCManager.removeTrivia()
                 NPCManager.initLost()
                 NPCManager.createTala(NPCManager.talaPositions[7], talaDialog, 34)
+                break
+            case QuestType.GUIDE:
+                NPCManager.createTala(NPCManager.talaPositions[7], talaDialog, 35)
                 break
         }
     }

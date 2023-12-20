@@ -1,11 +1,11 @@
 export enum QuestType {
-    TALK_TALA,
-    DANCE,
-    SEEDS,
-    WISHING_WELL,
-    TRIVIA,
-    GUIDE,
-    PIXEL_ART
+    TALK_TALA, // 0
+    DANCE, // 1 
+    SEEDS, // 2
+    WISHING_WELL, // 3
+    TRIVIA, // 4
+    GUIDE, // 5
+    PIXEL_ART // 6
 }
 
 export class Quest {
