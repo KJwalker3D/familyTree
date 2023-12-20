@@ -12,8 +12,9 @@ export class WishManager {
     scrollsCollected: number = 0
     well: any
 
-    messagePrompt: ui.FillInPrompt
+    messagePrompt: ui.CustomPrompt
     messageWritten: boolean = false
+    message: string = ""
 
     static instance: WishManager
 
@@ -35,28 +36,62 @@ export class WishManager {
             this.scrolls.push(e)
         }
 
-        this.messagePrompt = ui.createComponent(ui.FillInPrompt, {
-            title: 'Make a wish',
-            onAccept: (value: string) => {
-                if (value.length <= 50) {
+        this.messagePrompt = ui.createComponent(ui.CustomPrompt, {
+            style: ui.PromptStyles.DARK,
+            height: 300
+        })
+
+        const header = this.messagePrompt.addText({
+            value: "Make a wish",
+            xPosition: 0,
+            yPosition: 100,
+            size: 24
+        })
+
+        const button = this.messagePrompt.addButton({
+            style: ui.ButtonStyles.RED,
+            text: 'Submit',
+            xPosition: 0,
+            yPosition: -70,
+            onMouseDown: () => {
+                const msg = input.fillInBoxElement.value ? input.fillInBoxElement.value : ""
+                console.log(msg)
+                if (this.message != "" && this.message.length <= 50) {
                     this.messageWritten = true
                     this.messagePrompt.hide()
-                    publishMessage(value).then(() => {
+                    publishMessage(this.message).then(() => {
                         pointerEventsSystem.removeOnPointerDown(this.well)
                         this.showMessages()
                         QuestManager.endQuest()
                         QuestManager.nextStep()
                     })
-                } else {
-                    this.messagePrompt.titleElement.value = "Over 50 characters!"
-                    this.messagePrompt.titleElement.color = Color4.Red()
                 }
-                console.log('accepted value:', value)
             },
-            placeholder: "50 char limit",
-            useDarkTheme: true,
-            startHidden: true
         })
+        button.grayOut()
+
+        const input = this.messagePrompt.addTextBox({
+            placeholder: '50 char limit',
+            xPosition: 0,
+            yPosition: 15,
+            onChange: (value) => {
+                console.log('textbox changed:', value)
+                this.message = value
+                if (value.length > 50) {
+                    header.value = "Over 50 characters!"
+                    header.color = Color4.Red()
+                    button.grayOut()
+                } else if (value == "") {
+                    button.grayOut()
+                } else {
+                    header.value = "Make a wish"
+                    header.color = Color4.White()
+                    button.enable()
+                }
+            },
+        })
+
+
     }
 
     hasAllScrolls() {
