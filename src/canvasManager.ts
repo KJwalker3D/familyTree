@@ -104,9 +104,9 @@ class Canvas {
     activate() {
         this.isActive = true
         this.canvas = new PixelCanvas({
-            position: Vector3.create(61.75, 75.2, 87),
-            rotation: Quaternion.fromEulerDegrees(0, 177, 0),
-            scale: Vector3.create(1.5, 1.5, 1.5)
+            position: Vector3.create(62, 75.2, 86),
+            rotation: Quaternion.fromEulerDegrees(0, 178, 0),
+            scale: Vector3.create(.75, .75, .75)
         }, PIXEL_CANVAS_COLS, PIXEL_CANVAS_ROWS)
 
         // E/F keys to cycle colors

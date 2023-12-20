@@ -13,8 +13,8 @@ export function getUVs(sprite: any) {
   ]
 }
 
-export const PIXEL_CANVAS_COLS = 40
-export const PIXEL_CANVAS_ROWS = 20
+export const PIXEL_CANVAS_COLS = 80
+export const PIXEL_CANVAS_ROWS = 40
 export const MAX_WELL_MESSAGES = 20
 
 export const UI_ATLAS = "images/UI-atlas.png"
