@@ -45,7 +45,7 @@ const uiComponent = () => [
           onMouseDown={() => {
             movePlayerTo(
               {
-                newRelativePosition: Vector3.create(44, 20, 17) // dance
+                newRelativePosition: Vector3.create(66, 21, 23) // dance
               }
             )
           }}
