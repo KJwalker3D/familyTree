@@ -3,6 +3,7 @@ import { mainTree } from "./foliageTests"
 import { Vector3 } from "@dcl/sdk/math"
 import { QuestManager } from "./questManager"
 import { AudioManager } from "./audioManager"
+import { QuestType } from "./classes/quest"
 
 const gardenAssets = {
     brownSeeds: {
@@ -251,8 +252,10 @@ export class GardenManager {
                     Animator.playSingleAnimation(this.plant, 'play')
                     pointerEventsSystem.removeOnPointerDown(this.plant)
                     this.setGardenHoverText("Happy Plant")
-                    QuestManager.endQuest()
-                    QuestManager.nextStep()
+                    if (QuestManager.currentQuestType() == QuestType.SEEDS) {
+                        QuestManager.endQuest()
+                        QuestManager.nextStep()
+                    }
                     this.playGrowing()
                 }
             }
