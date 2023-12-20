@@ -12,7 +12,7 @@ class NPC {
     lostNpc: any
 
     talaPositions: any[] = [
-        { position: Vector3.create(74, 0, 32), rotation: Quaternion.fromEulerDegrees(0, 90, 0) }, // 0 start
+        { position: Vector3.create(78, 0, 32), rotation: Quaternion.fromEulerDegrees(0, 120, 0) }, // 0 start
         { position: Vector3.create(73.5, 20, 38) }, // 1 dance floor
         { position: Vector3.create(64.5, 29.3, 56) }, // 2 garden 1
         { position: Vector3.create(44, 30.2, 67) }, // 3 garden 2

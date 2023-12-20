@@ -8,11 +8,11 @@ Incorrect: Canessa, Shibu
 
 What was the theme of Metaverse Fashion Week 2023? 
 Future Heritage 
-Incorrect: Rebirth and Regeneration, Lucid Dreams
+Incorrect: Rebirth, Lucid Dreams
 
-What was the theme of Metaverse Art Week 2023 in Decentraland? 
-The metaverse is dead. Long live the metaverse. 
-Incorrect: Low Poly, High Art; Creativity in the Age of Decentralization
+How many artists' immersive works were exhibited in Decentraland during Metaverse Art Week 2023 in collaboration with art collective Vueltta? 
+60+ 
+Incorrect: 2, 4, 16
 https://decentraland.org/blog/announcements/metaverse-art-week-2023-the-metaverse-is-dead-long-live-the-metaverse 
 
 What was the main festival stage for Decentraland Music Festival 2023? 
@@ -33,7 +33,7 @@ Incorrect: Aisha, Simone
 
 What new feature was released this year combining Wearables and coding? 
 Smart wearables https://decentraland.org/blog/announcements/smart-wearables-and-portable-experiences 
-Incorrect: CodeWears, Wearables 2.0
+Incorrect: CodeWears, Wearables 4.0
 
 What new Emote features did the Emotes 2.0 add? 
 Props and sounds https://decentraland.org/blog/announcements/expression-in-decentraland-gets-an-upgrade-emotes-2-0-are-live  

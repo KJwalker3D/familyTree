@@ -102,6 +102,7 @@ class QuestM {
         }
         else if (this.currentQuestType() == QuestType.DANCE) {
             // give wearable(?)
+            // Yes! Working on it
         }
         else if (this.currentQuestType() == QuestType.SEEDS) {
             WishManager.getInstance().activate()
@@ -109,6 +110,7 @@ class QuestM {
         else if (this.currentQuestType() == QuestType.WISHING_WELL) {
         }
         else if (this.currentQuestType() == QuestType.TRIVIA) {
+            NPCManager.initLost()
             removeDanceNpcs()
         }
     }

@@ -7,5 +7,9 @@
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
-  "extends": "@dcl/sdk/types/tsconfig.ecs7.json"
+  "extends": "@dcl/sdk/types/tsconfig.ecs7.json",
+  "noLib": false,
+  "skipLibCheck": true,
+  "moduleResolution": "node",
+
 }
