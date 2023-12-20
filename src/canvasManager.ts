@@ -143,6 +143,9 @@ class Canvas {
                 }
             }
         })
+
+        // remove oasis barrier
+        engine.removeEntity(this.oasisBlocker)
     }
 }
 
