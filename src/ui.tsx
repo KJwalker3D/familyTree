@@ -23,6 +23,7 @@ const uiComponent = () => [
         height: 80,
         margin: '16px 0 8px 270px',
         padding: 4,
+        flexDirection: 'column'
       }}
       uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
     >
@@ -102,6 +103,12 @@ const uiComponent = () => [
           }}
         />
       </UiEntity>
+      <Label
+        onMouseDown={() => { console.log('Player Position clicked !') }}
+        value={`Player: ${getPlayerPosition()}`}
+        fontSize={18}
+        uiTransform={{ width: '100%', height: 30 }}
+      />
     </UiEntity>
   )
   ,
