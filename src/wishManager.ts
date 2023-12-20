@@ -10,6 +10,7 @@ import { QuestManager } from "./questManager"
 export class WishManager {
     scrolls: Entity[] = []
     scrollsCollected: number = 0
+    well: any
 
     messagePrompt: ui.FillInPrompt
     messageWritten: boolean = false
@@ -41,6 +42,7 @@ export class WishManager {
                     this.messageWritten = true
                     this.messagePrompt.hide()
                     publishMessage(value).then(() => {
+                        pointerEventsSystem.removeOnPointerDown(this.well)
                         this.showMessages()
                         QuestManager.endQuest()
                         QuestManager.nextStep()
@@ -62,16 +64,16 @@ export class WishManager {
     }
 
     activateWell() {
-        const e = engine.addEntity()
+        this.well = engine.addEntity()
         // MeshRenderer.setBox(e)
-        MeshCollider.setBox(e)
-        Transform.create(e, {
+        MeshCollider.setBox(this.well)
+        Transform.create(this.well, {
             position: Vector3.create(20.4, 42.5, 47.8),
-            scale: Vector3.create(2, 4, 2)
+            scale: Vector3.create(2.5, 4, 2.5)
         })
         pointerEventsSystem.onPointerDown(
             {
-                entity: e,
+                entity: this.well,
                 opts: {
                     button: InputAction.IA_POINTER,
                     hoverText: `Make A Wish`,
@@ -120,7 +122,6 @@ export class WishManager {
                     position: Vector3.create(20.4, 42.5, 47.8)
                 })
                 utils.perpetualMotions.startRotation(e, Quaternion.fromEulerDegrees(0, (Math.floor(Math.random() * 36) + 1) * (Math.floor(Math.random() * 2) ? -1 : 1), 0))
-
 
                 const ts = engine.addEntity()
                 Transform.create(ts, {
