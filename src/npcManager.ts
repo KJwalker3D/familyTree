@@ -8,6 +8,7 @@ import { lostDialog, talaDialog } from './npcDialog'
 
 class NPC {
     talaNpc: any
+    triviaNpc: any
     lostNpc: any
 
     talaPositions: any[] = [
@@ -17,7 +18,9 @@ class NPC {
         { position: Vector3.create(44, 30.2, 67) }, // 3 garden 2
         { position: Vector3.create(53, 29.3, 62.5) }, // 4 garden 3 (end quest)
         { position: Vector3.create(13, 40, 59) }, // 5 well 1
-        { position: Vector3.create(12, 40.3, 44) }, // 6 well 2 (end quest)
+        { position: Vector3.create(12, 40.25, 44) }, // 6 well 2 (end quest)
+        { position: Vector3.create(44.5, 54.5, 36), rotation: Quaternion.fromEulerDegrees(0, 180, 0) }, // 7 trivia
+
     ]
 
     pathToGarden: Vector3[] = [
@@ -74,6 +77,31 @@ class NPC {
             {
                 type: npc.NPCType.AVATAR,
                 onActivate: () => { }
+            }
+        )
+    }
+
+    createTrivia(t: TransformType, dialog: npc.Dialog[], index: number = 0, onActivateAnim: string = "Explain") {
+        if (this.triviaNpc) engine.removeEntity(this.triviaNpc)
+
+        this.triviaNpc = npc.create(
+            { ...t, scale: Vector3.create(0.16, 0.16, 0.16) },
+            {
+                type: npc.NPCType.CUSTOM,
+                model: "assets/Tala.glb",
+                onActivate: () => {
+                    npc.playAnimation(this.triviaNpc, onActivateAnim, false)
+                    npc.talk(this.triviaNpc, dialog, index)
+                },
+                onWalkAway: () => {
+                    this.playIdleAnim()
+                },
+                faceUser: true,
+                hoverText: "Talk",
+                portrait: "images/TalaPortrait.png",
+                coolDownDuration: 3,
+                idleAnim: 'ShortIdle',
+                walkingAnim: 'Walk'
             }
         )
     }

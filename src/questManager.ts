@@ -1,5 +1,5 @@
 import { Quest, QuestStep, QuestType } from "./classes/quest"
-import { startParty } from "./danceManager"
+import { removeDanceNpcs, startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
 import { WishManager } from "./wishManager"

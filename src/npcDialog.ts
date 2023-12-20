@@ -181,16 +181,24 @@ export const talaDialog: npc.Dialog[] = [
         }
     },
     { // 16
-        text: "Memories shape our journey, so we made Memory Lane to share some moments from 2023. There are so many more to add though, we could fill the whole tree!"
-    },
-    { // 17
-        text: "Anyway, hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
+        text: "Memories shape our journey, so we made Memory Lane to share some moments from 2023. There are so many more to add though, we could fill the whole tree!",
         isEndOfDialog: true,
         triggeredByNext: () => {
             // give emote(?)
             QuestManager.nextQuest()
-            NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 19)
+            NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 18)
+            NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 19)
         }
+    },
+    { // 17
+        text: "Anyway, hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
+        isEndOfDialog: true,
+        // triggeredByNext: () => {
+        //     // give emote(?)
+        //     QuestManager.nextQuest()
+        //     NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 18)
+        //     NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 19)
+        // }
     },
     { // 18
         text: "Hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
@@ -392,7 +400,7 @@ export const talaDialog: npc.Dialog[] = [
             },
             {
                 label: "Wearables 2.0",
-                goToDialog: 22
+                goToDialog: 22,
             },
             {
                 label: "CodeWears",
@@ -453,11 +461,4 @@ export const talaDialog: npc.Dialog[] = [
             NPCManager.createTala(NPCManager.talaPositions[0], talaDialog, 34) // update to trivia position
         }
     }
-    /**
-    
-    What new Emote features did the Emotes 2.0 add? 
-    Props and sounds https://decentraland.org/blog/announcements/expression-in-decentraland-gets-an-upgrade-emotes-2-0-are-live  
-    Incorrect: Programming, Props 
-    */
-
 ]
