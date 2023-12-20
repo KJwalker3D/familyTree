@@ -4,9 +4,10 @@ import * as utils from '@dcl-sdk/utils'
 import { onPlayerExpressionObservable } from '@dcl/sdk/observables'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
-import { Vector3 } from '@dcl/sdk/math'
-import { AudioSource, ColliderLayer, Entity, GltfContainer, MeshCollider, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { AudioSource, AvatarShape, Entity, GltfContainer, MeshCollider, MeshRenderer, Transform, engine } from '@dcl/sdk/ecs'
 import { mainTree } from './foliageTests'
+import { NPCManager } from './npcManager'
 
 
 export let isDancing: boolean = false
@@ -15,6 +16,25 @@ export let partyBGMLoud: Entity = engine.addEntity()
 
 let canDance: boolean = true
 let lights: any
+let danceNpcs: Entity[] = []
+let danceNpcT: any = [
+    // upper floor
+    { position: Vector3.create(69.5, 26.5, 29), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
+    { position: Vector3.create(72.5, 26.9, 27.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
+    { position: Vector3.create(68, 26.5, 33.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
+    { position: Vector3.create(75.25, 27.25, 26.5), rotation: Quaternion.fromEulerDegrees(0, 270, 0), scale: Vector3.One() },
+    { position: Vector3.create(70.5, 26.5, 32.5), rotation: Quaternion.fromEulerDegrees(0, 270, 0), scale: Vector3.One() },
+    // ground floor
+    { position: Vector3.create(57.5, 20.9, 36), rotation: Quaternion.fromEulerDegrees(0, 0, 0), scale: Vector3.One() },
+    { position: Vector3.create(65, 20, 41.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
+    { position: Vector3.create(63.5, 20, 26), rotation: Quaternion.fromEulerDegrees(0, -20, 0), scale: Vector3.One() },
+    { position: Vector3.create(62, 20, 28.5), rotation: Quaternion.fromEulerDegrees(0, 160, 0), scale: Vector3.One() },
+
+]
+let dances: string[] = [
+    "dance", "robot", "tik", "hammer", "tektonik", "disco"
+]
+let hasDanced: boolean = false
 
 export function addDanceManager() {
     Transform.create(partyBGM, { position: Vector3.create(70, 23, 31) })
@@ -33,6 +53,15 @@ export function addDanceManager() {
         volume: 0.8
     })
 
+    // add npcs to dance floor
+    for (let i = 0; i < danceNpcT.length; i++) {
+        let e = engine.addEntity()
+        Transform.create(e, danceNpcT[i])
+        const av = AvatarShape.create(e)
+        danceNpcs.push(e)
+        av.name = ""
+    }
+
     // Multiplayer (p2p)
     const sceneMessageBus = new MessageBus()
     const danceMeter = new DanceMeter(
@@ -47,11 +76,15 @@ export function addDanceManager() {
     // Listen for dancing
     onPlayerExpressionObservable.add(({ expressionId }) => {
         if (canDance &&
-            (expressionId == 'dance' || expressionId == 'robot' || expressionId == 'tik' || expressionId == 'hammer' || expressionId == 'tektonik' || expressionId == 'disco')) {
+            dances.includes(expressionId)) {
             console.log('dance detected')
             if (QuestManager.currentQuestType() != QuestType.DANCE) return
 
             isDancing = true
+            if (!hasDanced) {
+                hasDanced = true
+                startNpcDance()
+            }
             sceneMessageBus.emit('updateDanceMeter', {})
 
             // Set a timer to reset isClapping after a certain duration
@@ -80,6 +113,20 @@ export function addDanceManager() {
                 QuestManager.endQuest()
             }
         }
+    })
+}
+
+function startNpcDance() {
+    danceNpcs.forEach(e => {
+        const av = AvatarShape.getMutable(e)
+        av.expressionTriggerId = dances[Math.floor(Math.random() * dances.length)]
+    })
+    AvatarShape.getMutable(NPCManager.lostNpc).expressionTriggerId = "dance"
+}
+
+export function removeDanceNpcs() {
+    danceNpcs.forEach(e => {
+        engine.removeEntity(e)
     })
 }
 

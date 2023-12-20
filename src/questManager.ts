@@ -105,6 +105,12 @@ class QuestM {
         else if (this.currentQuestType() == QuestType.SEEDS) {
             WishManager.getInstance().activate()
         }
+        else if (this.currentQuestType() == QuestType.WISHING_WELL) {
+        }
+        else if (this.currentQuestType() == QuestType.TRIVIA) {
+            NPCManager.initLost()
+            removeDanceNpcs()
+        }
     }
 
     getCurrentSteps() {

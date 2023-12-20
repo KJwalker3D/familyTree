@@ -4,6 +4,24 @@ import { QuestType } from './classes/quest'
 import { NPCManager } from './npcManager'
 
 
+export const lostDialog: npc.Dialog[] = [
+    {
+        text: "Oh, hey! I got a bit lost in the memories, you know? Totally lost track of time."
+    },
+    {
+        text: "Did Tala send you to find me? Party at the Digital Nomad's Oasis?"
+    },
+    {
+        text: "Count me in! By the way, I heard there's a dope show there soon. Check out the events page so we don't miss the vibe!",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            // Start following player
+
+        }
+    }
+
+]
+
 export const talaDialog: npc.Dialog[] = [
     { // 0 TALA TALK QUEST
         text: "Hey there, adventurer! Welcome to our End-of-Year Bash in the heart of Decentraland.\n\nI'm Tala, your guide for this epic journey.",
@@ -180,8 +198,266 @@ export const talaDialog: npc.Dialog[] = [
         triggeredByNext: () => {
             NPCManager.playIdleAnim()
         }
+    },
+    { // 19
+        text: "Ready to start the trivia?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Not yet.",
+                goToDialog: 20
+            },
+            {
+                label: "Yes!",
+                goToDialog: 21
+            },
+        ]
+    },
+    { // 20
+        text: "Come back when you're ready!",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.playIdleAnim()
+        }
+    },
+    { // 21
+        text: "Who was the first official supermodel of the metaverse?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Canessa",
+                goToDialog: 22
+            },
+            {
+                label: "Gisele",
+                goToDialog: 22
+            },
+            {
+                label: "Tangpoko",
+                goToDialog: 23
+            },
+            {
+                label: "Shibu",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 22 incorrect trivia answer
+        text: "That doesn't sound right. You can find the answers around Memory Lane!",
+        isEndOfDialog: true
+    },
+    { // 23
+        text: "That's correct! Now what was the theme of Metaverse Fashion Week 2023?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Lucid Dreams",
+                goToDialog: 22
+            },
+            {
+                label: "Future Heritage",
+                goToDialog: 24
+            },
+            {
+                label: "Rebirth and Regeneration",
+                goToDialog: 22
+            },
+            {
+                label: "Dystopia",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 24
+        text: "Nice one! Tell me, what was the theme of Metaverse Art Week 2023 in Decentraland?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "The metaverse is dead. Long live the metaverse",
+                goToDialog: 25
+            },
+            {
+                label: "Creativity in the Age of Decentralization",
+                goToDialog: 22
+            },
+            {
+                label: "Conflict and Adversity",
+                goToDialog: 22
+            },
+            {
+                label: "Low Poly, High Art",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 25
+        text: "Wow you're on a roll! Next question, what was the main festival stage for Decentraland Music Festival 2023?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Sugar Club",
+                goToDialog: 22
+            },
+            {
+                label: "MetaTokyo",
+                goToDialog: 22
+            },
+            {
+                label: "Bufalo Saloon",
+                goToDialog: 22
+            },
+            {
+                label: "TRU Band Room Stage",
+                goToDialog: 26
+            },
+        ]
+    },
+    { // 26
+        text: "You got this! In what month of 2023 did the AI World Fair take place in Decentraland?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "October",
+                goToDialog: 27
+            },
+            {
+                label: "September",
+                goToDialog: 22
+            },
+            {
+                label: "March",
+                goToDialog: 22
+            },
+            {
+                label: "December",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 27
+        text: "Wow! Do you know what new Wearable category was introduced in 2023 thanks to community members like Nikki and Doki and the Foundation?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Tiara",
+                goToDialog: 22
+            },
+            {
+                label: "Mask",
+                goToDialog: 22
+            },
+            {
+                label: "Props",
+                goToDialog: 22
+            },
+            {
+                label: "Hands / Handwear",
+                goToDialog: 28
+            },
+        ]
+    },
+    { // 28
+        text: "Next! Which of these is not an AI NPC in Decentraland?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Aisha",
+                goToDialog: 22
+            },
+            {
+                label: "Dodge",
+                goToDialog: 22
+            },
+            {
+                label: "Sonic",
+                goToDialog: 29
+            },
+            {
+                label: "Simone",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 29
+        text: "Almost there! What new feature was released this year combining Wearables and coding?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Wearables 3.0",
+                goToDialog: 22
+            },
+            {
+                label: "Smart wearables",
+                goToDialog: 30
+            },
+            {
+                label: "Wearables 2.0",
+                goToDialog: 22
+            },
+            {
+                label: "CodeWears",
+                goToDialog: 22
+            },
+        ]
+    },
+    { // 30
+        text: "Last one! What new Emote features did the Emotes 2.0 add?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "AI",
+                goToDialog: 22
+            },
+            {
+                label: "Programming",
+                goToDialog: 22
+            },
+            {
+                label: "Props",
+                goToDialog: 22
+            },
+            {
+                label: "Props and sounds",
+                goToDialog: 31
+            },
+        ]
+    },
+    { // 31
+        text: "Amazing! Our memories make us stronger. Ready for the final chapter?",
+        isQuestion: true,
+        buttons: [
+            {
+                label: "Not yet.",
+                goToDialog: 32
+            },
+            {
+                label: "Yes!",
+                goToDialog: 33
+            },
+        ]
+    },
+    { // 32
+        text: "Come back when you're ready!",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTala(NPCManager.talaPositions[0], talaDialog, 31) // update to trivia position
+        }
+    },
+    { // 33
+        text: "The Digital Nomad's Oasis – a haven for creativity. But first, a mission. Ready for the last task?"
+    },
+    { // 34
+        text: "Your job is to find a lost player from our quest and bring them here. In return, I’ll hook you both up with magic tokens for the special place.",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            NPCManager.createTala(NPCManager.talaPositions[0], talaDialog, 34) // update to trivia position
+        }
     }
-
-
+    /**
+    
+    What new Emote features did the Emotes 2.0 add? 
+    Props and sounds https://decentraland.org/blog/announcements/expression-in-decentraland-gets-an-upgrade-emotes-2-0-are-live  
+    Incorrect: Programming, Props 
+    */
 
 ]

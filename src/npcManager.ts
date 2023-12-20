@@ -1,13 +1,14 @@
-import { Transform, engine } from '@dcl/sdk/ecs'
+import { AvatarShape, Entity, MeshCollider, Transform, TransformType, engine } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
-import { talaDialog } from './npcDialog'
+import { lostDialog, talaDialog } from './npcDialog'
 
 
 class NPC {
     talaNpc: any
+    lostNpc: any
 
     talaPositions: any[] = [
         { position: Vector3.create(74, 0, 32), rotation: Quaternion.fromEulerDegrees(0, 90, 0) }, // 0 start
@@ -42,13 +43,46 @@ class NPC {
 
     constructor() {
         this.createTala(this.talaPositions[0], talaDialog)
+        this.createLostNoDialog({ position: Vector3.create(66.6, 26.5, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() })
     }
 
-    createTala(transform: { position: Vector3, rotation?: Quaternion }, dialog: npc.Dialog[], index: number = 0, onActivateAnim: string = "Explain") {
+    initLost() {
+        this.createLost({ position: Vector3.create(66.6, 26.5, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() })
+        AvatarShape.getMutable(this.lostNpc).name = "Where am I?"
+    }
+
+    createLost(t: TransformType) {
+        if (this.lostNpc) engine.removeEntity(this.lostNpc)
+        this.lostNpc = npc.create(
+            t,
+            {
+                type: npc.NPCType.AVATAR,
+                onActivate: () => {
+                    console.log("I'm Lost!")
+                    npc.talk(this.lostNpc, lostDialog)
+                },
+                coolDownDuration: 3,
+                reactDistance: 2
+            }
+        )
+    }
+
+    createLostNoDialog(t: TransformType) {
+        if (this.lostNpc) engine.removeEntity(this.lostNpc)
+        this.lostNpc = npc.create(
+            t,
+            {
+                type: npc.NPCType.AVATAR,
+                onActivate: () => { }
+            }
+        )
+    }
+
+    createTala(t: TransformType, dialog: npc.Dialog[], index: number = 0, onActivateAnim: string = "Explain") {
         if (this.talaNpc) engine.removeEntity(this.talaNpc)
 
         this.talaNpc = npc.create(
-            { ...transform, scale: Vector3.create(0.16, 0.16, 0.16) },
+            { ...t, scale: Vector3.create(0.16, 0.16, 0.16) },
             {
                 type: npc.NPCType.CUSTOM,
                 model: "assets/Tala.glb",
