@@ -95,7 +95,7 @@ class Canvas {
 
     canvas: any
     isActive: boolean = false
-    colorIndex: number = -1
+    colorIndex: number = 0
 
     constructor() {
 
