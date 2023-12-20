@@ -19,11 +19,11 @@ let lights: any
 let danceNpcs: Entity[] = []
 let danceNpcT: any = [
     // upper floor
-    { position: Vector3.create(69.5, 26.5, 29), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
+    { position: Vector3.create(69.5, 26.2, 29), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
     { position: Vector3.create(72.5, 26.9, 27.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
     { position: Vector3.create(68, 26.5, 33.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },
     { position: Vector3.create(75.25, 27.25, 26.5), rotation: Quaternion.fromEulerDegrees(0, 270, 0), scale: Vector3.One() },
-    { position: Vector3.create(70.5, 26.5, 32.5), rotation: Quaternion.fromEulerDegrees(0, 270, 0), scale: Vector3.One() },
+    { position: Vector3.create(70.5, 26.3, 32.5), rotation: Quaternion.fromEulerDegrees(0, 270, 0), scale: Vector3.One() },
     // ground floor
     { position: Vector3.create(57.5, 20.9, 36), rotation: Quaternion.fromEulerDegrees(0, 0, 0), scale: Vector3.One() },
     { position: Vector3.create(65, 20, 41.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() },

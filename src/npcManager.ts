@@ -44,13 +44,17 @@ class NPC {
         Vector3.create(13, 40, 59),
     ]
 
+    lostStartingPos: TransformType = { position: Vector3.create(66.6, 26.2, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() }
+
+    lostCanTalk: boolean = false
+
     constructor() {
         this.createTala(this.talaPositions[0], talaDialog)
-        this.createLostNoDialog({ position: Vector3.create(66.6, 26.5, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() })
+        this.createLost(this.lostStartingPos)
     }
 
     initLost() {
-        this.createLost({ position: Vector3.create(66.6, 26.5, 30.5), rotation: Quaternion.fromEulerDegrees(0, 90, 0), scale: Vector3.One() })
+        this.lostCanTalk = true
         AvatarShape.getMutable(this.lostNpc).name = "Where am I?"
     }
 
@@ -61,24 +65,18 @@ class NPC {
             {
                 type: npc.NPCType.AVATAR,
                 onActivate: () => {
-                    console.log("I'm Lost!")
-                    npc.talk(this.lostNpc, lostDialog)
+                    if (this.lostCanTalk)
+                        npc.talk(this.lostNpc, lostDialog)
                 },
                 coolDownDuration: 3,
                 reactDistance: 2
             }
         )
+        AvatarShape.getMutable(this.lostNpc).name = ""
     }
 
-    createLostNoDialog(t: TransformType) {
-        if (this.lostNpc) engine.removeEntity(this.lostNpc)
-        this.lostNpc = npc.create(
-            t,
-            {
-                type: npc.NPCType.AVATAR,
-                onActivate: () => { }
-            }
-        )
+    removeTrivia() {
+        engine.removeEntity(this.triviaNpc)
     }
 
     createTrivia(t: TransformType, dialog: npc.Dialog[], index: number = 0, onActivateAnim: string = "Explain") {
@@ -158,6 +156,33 @@ class NPC {
     }
 
     startQuest() {
+        const currentQuest = QuestManager.currentQuestType()
+        switch (currentQuest) {
+            case QuestType.TALK_TALA:
+                break
+            case QuestType.DANCE:
+
+                break
+            case QuestType.SEEDS:
+                NPCManager.createTalaNoDialog()
+                npc.followPath(NPCManager.talaNpc, {
+                    path: NPCManager.pathAtGarden,
+                    totalDuration: 8,
+                    pathType: npc.NPCPathType.SMOOTH_PATH,
+                    curve: true,
+                    onFinishCallback: () => {
+                        NPCManager.createTala(NPCManager.talaPositions[3], talaDialog, 9)
+                    }
+                })
+                break
+            case QuestType.WISHING_WELL:
+                NPCManager.playIdleAnim()
+                break
+            case QuestType.TRIVIA:
+                NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 18)
+                NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 19)
+                break
+        }
 
 
     }
@@ -180,6 +205,11 @@ class NPC {
             case QuestType.WISHING_WELL:
                 this.createTala(this.talaPositions[6], talaDialog, 14, "Cool")
                 npc.talk(this.talaNpc, talaDialog, 14)
+                break
+            case QuestType.TRIVIA:
+                NPCManager.removeTrivia()
+                NPCManager.initLost()
+                NPCManager.createTala(NPCManager.talaPositions[7], talaDialog, 34)
                 break
         }
     }

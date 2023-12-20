@@ -19,7 +19,6 @@ export const lostDialog: npc.Dialog[] = [
 
         }
     }
-
 ]
 
 export const talaDialog: npc.Dialog[] = [
@@ -95,16 +94,6 @@ export const talaDialog: npc.Dialog[] = [
         isEndOfDialog: true,
         triggeredByNext: () => {
             QuestManager.nextQuest()
-            NPCManager.createTalaNoDialog()
-            npc.followPath(NPCManager.talaNpc, {
-                path: NPCManager.pathAtGarden,
-                totalDuration: 8,
-                pathType: npc.NPCPathType.SMOOTH_PATH,
-                curve: true,
-                onFinishCallback: () => {
-                    NPCManager.createTala(NPCManager.talaPositions[3], talaDialog, 9)
-                }
-            })
         }
     },
     { // 9 SEED QUEST    
@@ -156,7 +145,6 @@ export const talaDialog: npc.Dialog[] = [
         isEndOfDialog: true,
         triggeredByNext: () => {
             QuestManager.nextQuest()
-            NPCManager.playIdleAnim()
         }
     },
     { // 14
@@ -186,11 +174,9 @@ export const talaDialog: npc.Dialog[] = [
         triggeredByNext: () => {
             // give emote(?)
             QuestManager.nextQuest()
-            NPCManager.createTala(NPCManager.talaPositions[6], talaDialog, 18)
-            NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 19)
         }
     },
-    { // 17
+    { // 17 unused
         text: "Anyway, hit up Memory Lane, answer questions about the past year, and you're almost at the Digital Nomad’s Oasis, where the real party's at!",
         isEndOfDialog: true,
         // triggeredByNext: () => {
@@ -242,7 +228,7 @@ export const talaDialog: npc.Dialog[] = [
             },
             {
                 label: "Tangpoko",
-                goToDialog: 23
+                goToDialog: 31 //23
             },
             {
                 label: "Shibu",
@@ -448,17 +434,20 @@ export const talaDialog: npc.Dialog[] = [
         text: "Come back when you're ready!",
         isEndOfDialog: true,
         triggeredByNext: () => {
-            NPCManager.createTala(NPCManager.talaPositions[0], talaDialog, 31) // update to trivia position
+            NPCManager.createTrivia(NPCManager.talaPositions[7], talaDialog, 31)
         }
     },
     { // 33
-        text: "The Digital Nomad's Oasis – a haven for creativity. But first, a mission. Ready for the last task?"
+        text: "The Digital Nomad's Oasis – a haven for creativity. But first, a mission.",
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+            QuestManager.nextStep()
+            QuestManager.endQuest()
+            QuestManager.nextQuest()
+        }
     },
     { // 34
         text: "Your job is to find a lost player from our quest and bring them here. In return, I’ll hook you both up with magic tokens for the special place.",
-        isEndOfDialog: true,
-        triggeredByNext: () => {
-            NPCManager.createTala(NPCManager.talaPositions[0], talaDialog, 34) // update to trivia position
-        }
+        isEndOfDialog: true
     }
 ]

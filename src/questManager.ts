@@ -52,7 +52,8 @@ class QuestM {
             QuestType.GUIDE,
             "Guide the lost player back home",
             [
-                new QuestStep("Talk to Tala")
+                new QuestStep("Find lost player"),
+                new QuestStep("Return to Tala")
             ]
         ),
         new Quest(
@@ -108,7 +109,6 @@ class QuestM {
         else if (this.currentQuestType() == QuestType.WISHING_WELL) {
         }
         else if (this.currentQuestType() == QuestType.TRIVIA) {
-            NPCManager.initLost()
             removeDanceNpcs()
         }
     }

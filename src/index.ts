@@ -5,7 +5,6 @@ import { addDanceManager } from './danceManager'
 import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks } from './blogImages'
 import { engine, Transform, TextShape, executeTask, AudioSource } from '@dcl/ecs'
 import { createPainterPlatform } from './painterPlatform'
-import { getMessages, publishMessage } from './serverHandler'
 import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
 import { CanvasManager } from './canvasManager'
 
@@ -25,10 +24,6 @@ export function main() {
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
 
-
-
-
-  // publishMessage("test123")
 }
 
 
