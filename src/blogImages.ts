@@ -34,7 +34,7 @@ function addImagePlane(position: Vector3, rotation: Quaternion, imageLink: strin
         entity: imagePlane,
         opts: {
             button: InputAction.IA_POINTER,
-            hoverText: 'Blog post'
+            hoverText: 'Read more'
         }
     },
     function () {
@@ -74,8 +74,10 @@ export const imageRotations: Quaternion[] = [
 ];
 
 export const imageLinks: string[] = [
-    'https://bafybeidct7djai7nxt6yyasrb7o464qdkbybiqm3i3myu5gironzz6bqpe.ipfs.nftstorage.link/', 
-    'https://bafybeidokyz7r6fahsq6s4klqlwy3qqphsptvnirjl5ramzieta5swfzzq.ipfs.nftstorage.link/',
+    // MVFW23 image 'https://bafybeidct7djai7nxt6yyasrb7o464qdkbybiqm3i3myu5gironzz6bqpe.ipfs.nftstorage.link/', 
+    'https://bafkreibsf224ap2rabuc7u6dtjfrliwhmje4jbaq2ksuqr6atxu6d6d72u.ipfs.nftstorage.link/',
+    //MVAW23image 'https://bafybeidokyz7r6fahsq6s4klqlwy3qqphsptvnirjl5ramzieta5swfzzq.ipfs.nftstorage.link/',
+    'https://bafkreieswvwuipzego5jto5qr2vwxfcppbqbznnxwy2wclpzepenhyhkte.ipfs.nftstorage.link/',
     'https://bafkreiavrm6df2dfhkug7nobyk2z44kv7leyryvvorllbkj2bjceb7ifua.ipfs.nftstorage.link/',
     'https://bafkreick4ch43r2agpd4gnxdck5icypfyrycbo3ik3brcdxshy2vdn76oi.ipfs.nftstorage.link/',
     'https://bafkreiaxuile5jekvsvufvgvptbir6rv456nxlon6opwrg3wo634wwwifu.ipfs.nftstorage.link/',

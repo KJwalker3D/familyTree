@@ -38,12 +38,28 @@ export function createWishingWellAnim() {
    //     }]
    // })
 
-   const swing = engine.addEntity()
-   GltfContainer.create(swing, {
-       src: 'assets/wishingWell/swing.glb'
-   })
-   Transform.create(swing, {
+   //const swing = engine.addEntity()
+   //GltfContainer.create(swing, {
+   //    src: 'assets/wishingWell/swing.glb'
+   //})
+   //Transform.create(swing, {
+   //    position: position
+   //})
+
+   const sparklesAnimation = engine.addEntity();
+   Transform.create(sparklesAnimation, {
        position: position
+   })
+   GltfContainer.create(sparklesAnimation, {
+       src: 'assets/wishingWell/sparkles-positioned.glb'
+   })
+   Animator.create(sparklesAnimation, {
+       states: [{
+           clip: 'play',
+           playing: true,
+           loop: true,
+       }
+       ]
    })
 
    

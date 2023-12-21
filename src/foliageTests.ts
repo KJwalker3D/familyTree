@@ -30,7 +30,7 @@ export function addAssets() {
     //     ]
     // })
 
-
+/*
     // Can use this to highlight different areas for instance the wishing well, or a place to find or anything
     const sparklesAnimation = engine.addEntity();
     Transform.create(sparklesAnimation, {
@@ -47,6 +47,7 @@ export function addAssets() {
         }
         ]
     })
+    */
 
 }
 
