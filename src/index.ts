@@ -31,7 +31,7 @@ export function main() {
     liveUrl: 'https://player.vimeo.com/external/884357758.m3u8?s=172724121da5409c84cd3c61110e463e117ff000&logging=false',
     playlist: ['https://player.vimeo.com/external/846377397.m3u8?s=e10760f6550f98b124bef4fc8c0367b7e0e20d1e&logging=false'],
     position: { x: 15, y: 1, z: 1},
-    scale: { x: 1.92+3, y: 1.08+3, z: 1},
+    scale: { x: 0, y: 0, z: 0},
     rotation: { x: 0, y: 0, z: 0}
 })
 
