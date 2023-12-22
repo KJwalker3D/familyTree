@@ -123,29 +123,37 @@ class Canvas {
         // E/F keys to cycle colors
         engine.addSystem(() => {
             if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
-                if (this.colorIndex == -1) {
-                    this.colorIndex = 0
-                }
-                else if (this.colorIndex - 1 < 0) {
-                    this.colorIndex = this.colors.length - 1
-                } else {
-                    this.colorIndex--
-                }
+                this.prevColor()
             }
             if (inputSystem.isTriggered(InputAction.IA_SECONDARY, PointerEventType.PET_DOWN)) {
-                if (this.colorIndex == -1) {
-                    this.colorIndex = 0
-                }
-                else if (this.colorIndex + 1 >= this.colors.length) {
-                    this.colorIndex = 0
-                } else {
-                    this.colorIndex++
-                }
+                this.nextColor()
             }
         })
 
         // remove oasis barrier
         engine.removeEntity(this.oasisBlocker)
+    }
+
+    nextColor() { // F key
+        if (this.colorIndex == -1) {
+            this.colorIndex = 0
+        }
+        else if (this.colorIndex + 1 >= this.colors.length) {
+            this.colorIndex = 0
+        } else {
+            this.colorIndex++
+        }
+    }
+
+    prevColor() { // E key
+        if (this.colorIndex == -1) {
+            this.colorIndex = 0
+        }
+        else if (this.colorIndex - 1 < 0) {
+            this.colorIndex = this.colors.length - 1
+        } else {
+            this.colorIndex--
+        }
     }
 }
 

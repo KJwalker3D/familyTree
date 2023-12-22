@@ -50,5 +50,17 @@ export const coords = {
     sourceRight: 0.248,
     sourceTop: 0.47,
     sourceBottom: 0.36
+  },
+  pixel_E_arrow: {
+    sourceLeft: 0,
+    sourceRight: 0.2,
+    sourceTop: 0.34,
+    sourceBottom: 0.17
+  },
+  pixel_F_arrow: {
+    sourceLeft: 0,
+    sourceRight: 0.2,
+    sourceTop: 0.17,
+    sourceBottom: 0
   }
 }

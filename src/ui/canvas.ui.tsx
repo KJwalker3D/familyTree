@@ -42,9 +42,48 @@ class canvasHud {
                         texture: {
                             src: UI_ATLAS
                         }
-                        // color: Color4.Black()
                     }}
                 >
+                    <UiEntity
+                        uiTransform={{
+                            width: 50,
+                            height: 50,
+                            padding: 4,
+                            flexDirection: 'column',
+                            positionType: "absolute",
+                            position: '25px 0 0 141px'
+                        }}
+                        uiBackground={{
+                            textureMode: "stretch",
+                            uvs: getUVs(coords.pixel_F_arrow),
+                            texture: {
+                                src: UI_ATLAS
+                            }
+                        }}
+                        onMouseDown={() => {
+                            CanvasManager.nextColor()
+                        }}
+                    ></UiEntity>
+                    <UiEntity
+                        uiTransform={{
+                            width: 50,
+                            height: 50,
+                            padding: 4,
+                            flexDirection: 'column',
+                            positionType: "absolute",
+                            position: '25px 0 0 -35'
+                        }}
+                        uiBackground={{
+                            textureMode: "stretch",
+                            uvs: getUVs(coords.pixel_E_arrow),
+                            texture: {
+                                src: UI_ATLAS
+                            }
+                        }}
+                        onMouseDown={() => {
+                            CanvasManager.prevColor()
+                        }}
+                    ></UiEntity>
                     <Label
                         value={`PIXEL ART`}
                         fontSize={18}
