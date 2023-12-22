@@ -1,3 +1,4 @@
+import { CanvasManager } from "./canvasManager"
 import { Quest, QuestStep, QuestType } from "./classes/quest"
 import { removeDanceNpcs, startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
@@ -60,7 +61,7 @@ class QuestM {
             QuestType.PIXEL_ART,
             "Create pixel art!",
             [
-                new QuestStep("Talk to Tala")
+                new QuestStep("Create pixel art!")
             ]
         ),
     ]
@@ -92,6 +93,10 @@ class QuestM {
         NPCManager.startQuest()
         if (this.currentQuestType() == QuestType.SEEDS) {
             GardenManager.getInstance().activate()
+        }
+        else if (this.currentQuestType() == QuestType.PIXEL_ART) {
+            CanvasManager.activate()
+            this.nextStep()
         }
     }
 
