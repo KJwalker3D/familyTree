@@ -74,6 +74,7 @@ class NPC {
                     if (this.lostCanTalk)
                         npc.talk(this.lostNpc, lostDialog)
                 },
+                dialogSound: "sound/talking.mp3",
                 coolDownDuration: 3,
                 reactDistance: 2
             }
@@ -148,6 +149,7 @@ class NPC {
                 onWalkAway: () => {
                     this.playIdleAnim()
                 },
+                dialogSound: "sound/talking.mp3",
                 faceUser: true,
                 hoverText: "Talk",
                 portrait: "images/TalaPortrait.png",
@@ -173,6 +175,7 @@ class NPC {
                 onWalkAway: () => {
                     this.playIdleAnim()
                 },
+                dialogSound: "sound/talking.mp3",
                 faceUser: true,
                 hoverText: "Talk",
                 portrait: "images/TalaPortrait.png",
