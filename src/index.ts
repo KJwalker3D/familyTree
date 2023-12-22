@@ -6,7 +6,6 @@ import { addImagePlanes, imagePositions, imageRotations, imageLinks, blogLinks }
 import { engine, Transform, TextShape, executeTask, AudioSource } from '@dcl/ecs'
 import { createPainterPlatform } from './painterPlatform'
 import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
-import { CanvasManager } from './canvasManager'
 import VLM from "vlm-dcl";
 import { QuickCreator } from "vlm-dcl";
 
@@ -20,8 +19,6 @@ export function main() {
   createMemoryLaneAnim()
   createWishingWellAnim()
   createOasisAssets()
-
-  CanvasManager.activate()
 
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
