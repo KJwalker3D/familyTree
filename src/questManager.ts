@@ -4,6 +4,7 @@ import { removeDanceNpcs, startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
 import { NPCManager } from "./npcManager"
 import { WishManager } from "./wishManager"
+import *  as  ui from 'dcl-ui-toolkit'
 
 
 class QuestM {
@@ -66,7 +67,16 @@ class QuestM {
         ),
     ]
 
+    questCompleteImage: ui.CenterImage
+
     constructor() {
+        this.questCompleteImage = ui.createComponent(ui.CenterImage,
+            {
+                image: "images/QuestCompleteUI-min.png",
+                duration: 3,
+                startHidden: true
+            }
+        )
     }
 
     currentQuestType(): QuestType {
@@ -97,10 +107,12 @@ class QuestM {
         else if (this.currentQuestType() == QuestType.PIXEL_ART) {
             CanvasManager.activate()
             this.nextStep()
+            // give poap
         }
     }
 
     endQuest() {
+        this.questCompleteImage.show(2.5)
         NPCManager.endQuest()
         if (this.currentQuestType() == QuestType.TALK_TALA) {
             startParty()
@@ -113,6 +125,7 @@ class QuestM {
             WishManager.getInstance().activate()
         }
         else if (this.currentQuestType() == QuestType.WISHING_WELL) {
+            // give emote(?)
         }
         else if (this.currentQuestType() == QuestType.TRIVIA) {
             removeDanceNpcs()
