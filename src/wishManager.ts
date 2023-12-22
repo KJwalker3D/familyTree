@@ -6,6 +6,7 @@ import { Color4, Quaternion, Vector3 } from "@dcl/ecs-math"
 import * as utils from '@dcl-sdk/utils'
 import *  as  ui from 'dcl-ui-toolkit'
 import { QuestManager } from "./questManager"
+import { QuestType } from "./classes/quest"
 
 export class WishManager {
     scrolls: Entity[] = []
@@ -135,6 +136,16 @@ export class WishManager {
                 () => {
                     engine.removeEntity(e)
                     this.scrollsCollected++
+                    QuestManager.quests.forEach(q => {
+                        if (q.type == QuestType.WISHING_WELL) {
+                            if (this.scrollsCollected < 8) {
+                                q.steps[0].text = `Find ${8 - this.scrollsCollected} scroll(s)`
+                            } else {
+                                q.steps[0].text = `Found scrolls`
+                            }
+                            return
+                        }
+                    })
                     if (this.hasAllScrolls()) {
                         this.activateWell()
                         QuestManager.nextStep()

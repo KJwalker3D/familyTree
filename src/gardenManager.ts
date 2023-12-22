@@ -276,6 +276,16 @@ export class GardenManager {
     addSeed(s: GardenItem) {
         if (!this.collectedSeeds.includes(s)) {
             this.collectedSeeds.push(s)
+            QuestManager.quests.forEach(q => {
+                if (q.type == QuestType.SEEDS) {
+                    if (this.collectedSeeds.length < 3) {
+                        q.steps[0].text = `Collect ${3 - this.collectedSeeds.length} seed(s)`
+                    } else {
+                        q.steps[0].text = `Collected seeds`
+                    }
+                    return
+                }
+            })
             AudioManager.playSFXPing()
         }
         if (this.hasAllSeeds()) {
