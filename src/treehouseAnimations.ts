@@ -10,7 +10,10 @@ export function createMemoryLaneAnim() {
         src: 'assets/memoryLane/campfire.glb'
     })
     Transform.create(memoryFire, {
-        position: position
+        position: {
+            x: position.x, 
+            y: position.y -0.2, 
+            z: position.z}
     })
     Animator.create(memoryFire, {
         states: [{

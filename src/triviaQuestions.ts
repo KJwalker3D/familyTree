@@ -24,7 +24,7 @@ October https://decentraland.org/blog/announcements/the-ultimate-guide-to-the-ai
 Incorrect: September, March
 
 What new Wearable category was introduced in 2023 thanks to community members like Nikki and Doki and the Foundation?
-Hands / Handwear https://decentraland.org/blog/announcements/a-new-wearable-category-handwear 
+Handwear https://decentraland.org/blog/announcements/a-new-wearable-category-handwear 
 Incorrect: Props, Tiara
 
 Which of these is not an AI NPC in Decentraland? 
