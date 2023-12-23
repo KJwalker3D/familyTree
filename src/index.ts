@@ -8,6 +8,7 @@ import { createPainterPlatform } from './painterPlatform'
 import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
 import VLM from "vlm-dcl";
 import { QuickCreator } from "vlm-dcl";
+import { createReward } from './claim-dropin/rewards'
 
 
 export function main() {
@@ -19,6 +20,7 @@ export function main() {
   createMemoryLaneAnim()
   createWishingWellAnim()
   createOasisAssets()
+  createReward()
 
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
