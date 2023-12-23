@@ -14,7 +14,7 @@ import * as utils from '@dcl-sdk/utils'
 
       let dispenser = engine.addEntity()
       Transform.create(dispenser, {
-        position: Vector3.create(48, 73.5, 48),
+        position: Vector3.create(48, 73.4, 48),
         scale: Vector3.create(2, 2, 2)
       })
 
