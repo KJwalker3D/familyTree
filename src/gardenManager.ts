@@ -129,6 +129,14 @@ export class GardenManager {
             ]
         })
 
+        Animator.create(this.waterTrough, {
+            states: [{
+                clip: 'play',
+                playing: false,
+                loop: false,
+            }
+            ]
+        })
         this.growingSound = engine.addEntity()
         Transform.create(this.growingSound, {
             position: Vector3.create(59, 30.5, 60)
@@ -235,6 +243,7 @@ export class GardenManager {
                                         if (this.currentItem = GardenItem.WATERING_CAN) {
                                             this.updateGardenItem(GardenItem.WATER_TROUGH)
                                             pointerEventsSystem.removeOnPointerDown(this.waterTrough)
+                                            Animator.playSingleAnimation(this.waterTrough, 'play')
                                             this.setGardenHoverText("Water Seeds")
                                             AudioManager.playSFXPing()
                                         }
