@@ -157,7 +157,7 @@ export class GardenManager {
             },
             () => {
                 this.addSeed(GardenItem.BROWN_SEEDS)
-                pointerEventsSystem.removeOnPointerDown(this.brownSeeds)
+                engine.removeEntity(this.brownSeeds)
             }
         )
         pointerEventsSystem.onPointerDown(
@@ -170,7 +170,7 @@ export class GardenManager {
             },
             () => {
                 this.addSeed(GardenItem.GREEN_SEEDS)
-                pointerEventsSystem.removeOnPointerDown(this.greenSeeds)
+                engine.removeEntity(this.greenSeeds)
             }
         )
         pointerEventsSystem.onPointerDown(
@@ -183,7 +183,7 @@ export class GardenManager {
             },
             () => {
                 this.addSeed(GardenItem.RED_SEEDS)
-                pointerEventsSystem.removeOnPointerDown(this.redSeeds)
+                engine.removeEntity(this.redSeeds)
             }
         )
         this.setGardenClick()
@@ -222,7 +222,7 @@ export class GardenManager {
                             },
                             () => {
                                 this.updateGardenItem(GardenItem.WATERING_CAN)
-                                pointerEventsSystem.removeOnPointerDown(this.wateringCan)
+                                engine.removeEntity(this.wateringCan)
                                 pointerEventsSystem.onPointerDown(
                                     {
                                         entity: this.waterTrough,
