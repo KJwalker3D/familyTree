@@ -42,7 +42,7 @@ export function addDanceManager() {
         audioClipUrl: "sound/partyDance.mp3",
         playing: true,
         loop: true,
-        volume: 0.2
+        volume: 0.1
     })
 
     Transform.create(partyBGMLoud, { position: Vector3.create(70, 23, 31) })
