@@ -43,7 +43,49 @@ import * as utils from '@dcl-sdk/utils'
         }
       )
     
-      
-      
       }
     
+
+      export function createWearableReward() {
+
+        console.log('creating wearable reward')
+        CONFIG.init()
+
+        let avatar = engine.PlayerEntity
+        let avatarPosition = Transform.getMutable(avatar).position
+  
+        let dispenserWearable = engine.addEntity()
+        Transform.create(dispenserWearable, {
+          position: {
+            x: avatarPosition.x,
+            y: avatarPosition.y -1,
+            z: avatarPosition.z},
+          scale: Vector3.create(2, 2, 2)
+        })
+  
+        GltfContainer.create(dispenserWearable, {
+          src: 'assets/dispenser.glb',
+          invisibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS,
+    visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
+        })
+      
+        utils.perpetualMotions.startRotation(dispenserWearable, Quaternion.fromEulerDegrees(0, 25, 0))
+        pointerEventsSystem.onPointerDown(
+          {
+            entity: dispenserWearable,
+            opts: {
+              button: InputAction.IA_POINTER,
+              hoverText: 'Claim Reward',
+              maxDistance: 16
+            }
+          },
+          function () {
+            openUI('images/star.png', 'Patch Pants')
+            let camp = ClaimConfig.campaign.CAMPAIGN_TEST
+            claimToken(camp, camp.campaignKeys.KEY_0)
+            console.log('claimed Wearable gift')
+            utils.timers.setTimeout(() => {engine.removeEntity(dispenserWearable)}, 5000)
+          }
+        )
+      
+        }
