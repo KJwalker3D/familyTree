@@ -15,7 +15,8 @@ class canvasHud {
                     padding: 4,
                     flexDirection: 'column',
                     positionType: "absolute",
-                    position: `${UiCanvasInformation.get(engine.RootEntity).height - 170} 0 0 ${UiCanvasInformation.get(engine.RootEntity).width - 270}`
+                    position: `${UiCanvasInformation.get(engine.RootEntity).height - 170} 0 0 ${UiCanvasInformation.get(engine.RootEntity).width - 270}`,
+                    display: CanvasManager.isActive ? 'flex' : 'none'
                 }}
                 uiBackground={{
                     textureMode: "stretch",
