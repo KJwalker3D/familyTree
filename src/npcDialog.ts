@@ -243,7 +243,7 @@ export const talaDialog: npc.Dialog[] = [
             },
             {
                 label: "Tangpoko",
-                goToDialog: 31 //23 //HERE
+                goToDialog: 23 //31 //HERE
             },
             {
                 label: "Shibu",
