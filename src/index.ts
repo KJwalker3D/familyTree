@@ -16,12 +16,12 @@ export function main() {
  
   //Box cover
   
-  /*
+  
   addTestCube({
     position: Vector3.create(48, 40, 48),
     scale: Vector3.create(60, 100, 60),
   }, undefined, undefined, Color4.create(0, 0, 0, 0), false, false)
-  */
+  
  
   setupUi()
   addAssets()

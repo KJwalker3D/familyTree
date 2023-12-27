@@ -176,10 +176,7 @@ export const talaDialog: npc.Dialog[] = [
         isEndOfDialog: true,
         triggeredByNext: () => {
             NPCManager.playIdleAnim()
-            if (!hasEmote) {
-                createEmoteReward()
-            }
-            hasEmote = true
+          
         }
     },
     { // 16
@@ -187,6 +184,11 @@ export const talaDialog: npc.Dialog[] = [
         isEndOfDialog: true,
         triggeredByNext: () => {
             QuestManager.nextQuest()
+            if (!hasEmote) {
+                createEmoteReward()
+            }
+            hasEmote = true
+
         }
     },
     { // 17 unused
@@ -241,7 +243,7 @@ export const talaDialog: npc.Dialog[] = [
             },
             {
                 label: "Tangpoko",
-                goToDialog: 31 //23
+                goToDialog: 31 //23 //HERE
             },
             {
                 label: "Shibu",
@@ -467,7 +469,7 @@ export const talaDialog: npc.Dialog[] = [
         text: "You nailed it! The oasis is waiting. When you dive in, go ahead and add your creative touch to our virtual gallery."
     },
     { // 36
-        text: "Take this POAP token – your key to the digital nomad life. Ready to create your pixel masterpiece?",
+        text: "Take this POAP token – mint it on the POAP mobile app with secret word: you-are-awesome. Ready to create your pixel masterpiece in the Oasis?",
         isQuestion: true,
         buttons: [
             {

@@ -103,12 +103,8 @@ const uiComponent = () => [
           }}
         />
       </UiEntity>
-      <Label
-        onMouseDown={() => { console.log('Player Position clicked !') }}
-        value={`Player: ${getPlayerPosition()}`}
-        fontSize={18}
-        uiTransform={{ width: '100%', height: 30 }}
-      />
+    
+    
     </UiEntity>
   )
   ,
