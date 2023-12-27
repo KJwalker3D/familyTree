@@ -16,98 +16,98 @@ export function setupUi() {
 }
 
 const uiComponent = () => [
-  (
-    <UiEntity
-      uiTransform={{
-        width: 400,
-        height: 80,
-        margin: '16px 0 8px 270px',
-        padding: 4,
-        flexDirection: 'column'
-      }}
-      uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
-    >
-      <UiEntity
-        uiTransform={{
-          width: '100%',
-          height: '100%',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}
-        uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
-      >
-        <Button
-          uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Dance'
-          variant='primary'
-          fontSize={14}
-          onMouseDown={() => {
-            movePlayerTo(
-              {
-                newRelativePosition: Vector3.create(66, 21, 23) // dance
-              }
-            )
-          }}
-        />
-        <Button
-          uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Garden'
-          variant='primary'
-          fontSize={14}
-          onMouseDown={() => {
-            movePlayerTo(
-              {
-                newRelativePosition: Vector3.create(63, 30, 59) // garden
-              }
-            )
-          }}
-        />
-        <Button
-          uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Well'
-          variant='primary'
-          fontSize={14}
-          onMouseDown={() => {
-            movePlayerTo(
-              {
-                newRelativePosition: Vector3.create(15, 41, 56) // wishing well
-              }
-            )
-          }}
-        />
-        <Button
-          uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Trivia'
-          variant='primary'
-          fontSize={14}
-          onMouseDown={() => {
-            movePlayerTo(
-              {
-                newRelativePosition: Vector3.create(45, 54, 16) // trivia
-              }
-            )
-          }}
-        />
-        <Button
-          uiTransform={{ width: 100, height: 40, margin: 8 }}
-          value='Oasis'
-          variant='primary'
-          fontSize={14}
-          onMouseDown={() => {
-            movePlayerTo(
-              {
-                newRelativePosition: Vector3.create(48, 74, 75) // oasis
-              }
-            )
-          }}
-        />
-      </UiEntity>
-    
-    
-    </UiEntity>
-  )
-  ,
+  // (
+  //   <UiEntity
+  //     uiTransform={{
+  //       width: 400,
+  //       height: 80,
+  //       margin: '16px 0 8px 270px',
+  //       padding: 4,
+  //       flexDirection: 'column'
+  //     }}
+  //     uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
+  //   >
+  //     <UiEntity
+  //       uiTransform={{
+  //         width: '100%',
+  //         height: '100%',
+  //         flexDirection: 'row',
+  //         alignItems: 'center',
+  //         justifyContent: 'space-between'
+  //       }}
+  //       uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+  //     >
+  //       <Button
+  //         uiTransform={{ width: 100, height: 40, margin: 8 }}
+  //         value='Dance'
+  //         variant='primary'
+  //         fontSize={14}
+  //         onMouseDown={() => {
+  //           movePlayerTo(
+  //             {
+  //               newRelativePosition: Vector3.create(66, 21, 23) // dance
+  //             }
+  //           )
+  //         }}
+  //       />
+  //       <Button
+  //         uiTransform={{ width: 100, height: 40, margin: 8 }}
+  //         value='Garden'
+  //         variant='primary'
+  //         fontSize={14}
+  //         onMouseDown={() => {
+  //           movePlayerTo(
+  //             {
+  //               newRelativePosition: Vector3.create(63, 30, 59) // garden
+  //             }
+  //           )
+  //         }}
+  //       />
+  //       <Button
+  //         uiTransform={{ width: 100, height: 40, margin: 8 }}
+  //         value='Well'
+  //         variant='primary'
+  //         fontSize={14}
+  //         onMouseDown={() => {
+  //           movePlayerTo(
+  //             {
+  //               newRelativePosition: Vector3.create(15, 41, 56) // wishing well
+  //             }
+  //           )
+  //         }}
+  //       />
+  //       <Button
+  //         uiTransform={{ width: 100, height: 40, margin: 8 }}
+  //         value='Trivia'
+  //         variant='primary'
+  //         fontSize={14}
+  //         onMouseDown={() => {
+  //           movePlayerTo(
+  //             {
+  //               newRelativePosition: Vector3.create(45, 54, 16) // trivia
+  //             }
+  //           )
+  //         }}
+  //       />
+  //       <Button
+  //         uiTransform={{ width: 100, height: 40, margin: 8 }}
+  //         value='Oasis'
+  //         variant='primary'
+  //         fontSize={14}
+  //         onMouseDown={() => {
+  //           movePlayerTo(
+  //             {
+  //               newRelativePosition: Vector3.create(48, 74, 75) // oasis
+  //             }
+  //           )
+  //         }}
+  //       />
+  //     </UiEntity>
+
+
+  //   </UiEntity>
+  // )
+  // ,
   <NpcUtilsUi />,
   QuestHUD.module(),
   CanvasHUD.module(),
