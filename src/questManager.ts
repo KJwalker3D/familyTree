@@ -1,4 +1,5 @@
 import { CanvasManager } from "./canvasManager"
+import { createEmoteReward, createWearableReward } from "./claim-dropin/rewards"
 import { Quest, QuestStep, QuestType } from "./classes/quest"
 import { removeDanceNpcs, startParty } from "./danceManager"
 import { GardenManager } from "./gardenManager"
@@ -112,20 +113,23 @@ class QuestM {
     }
 
     endQuest() {
-        this.questCompleteImage.show(2.5)
+        let hasWearable: boolean = false
+        let hasEmote: boolean = false
+       // this.questCompleteImage.show(2.5) testing without quest complete ui
         NPCManager.endQuest()
         if (this.currentQuestType() == QuestType.TALK_TALA) {
             startParty()
         }
         else if (this.currentQuestType() == QuestType.DANCE) {
             // give wearable(?)
-            // Yes! Working on it
+           // createWearableReward() creating multiple instances
         }
         else if (this.currentQuestType() == QuestType.SEEDS) {
             WishManager.getInstance().activate()
         }
         else if (this.currentQuestType() == QuestType.WISHING_WELL) {
             // give emote(?)
+           // createEmoteReward() creating multiple instances
         }
         else if (this.currentQuestType() == QuestType.TRIVIA) {
             removeDanceNpcs()

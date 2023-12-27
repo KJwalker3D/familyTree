@@ -8,17 +8,20 @@ import { createPainterPlatform } from './painterPlatform'
 import { createMemoryLaneAnim, createOasisAssets, createWishingWellAnim } from './treehouseAnimations'
 import VLM from "vlm-dcl";
 import { QuickCreator } from "vlm-dcl";
-import { createReward, createWearableReward } from './claim-dropin/rewards'
+import { createEmoteReward, createReward, createWearableReward } from './claim-dropin/rewards'
 import { addTestCube } from '@dcl-sdk/utils'
 
 
 export function main() {
  
   //Box cover
+  
+  /*
   addTestCube({
     position: Vector3.create(48, 40, 48),
     scale: Vector3.create(60, 100, 60),
   }, undefined, undefined, Color4.create(0, 0, 0, 0), false, false)
+  */
  
   setupUi()
   addAssets()
@@ -29,7 +32,7 @@ export function main() {
   createWishingWellAnim()
   createOasisAssets()
   createReward()
-  createWearableReward()
+
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
   VLM.init();

@@ -2,7 +2,10 @@ import *  as  npc from 'dcl-npc-toolkit'
 import { QuestManager } from './questManager'
 import { QuestType } from './classes/quest'
 import { NPCManager } from './npcManager'
+import { createEmoteReward, createWearableReward } from './claim-dropin/rewards'
 
+let hasWearable: boolean = false
+let hasEmote: boolean = false
 
 export const lostDialog: npc.Dialog[] = [
     {
@@ -73,6 +76,12 @@ export const talaDialog: npc.Dialog[] = [
     },
     { // 6
         text: "Damn, those moves were fire! Here's a little something for your efforts.\n\nNow, follow me to the next part of our quest!",
+        triggeredByNext: () => {
+            if (!hasWearable) {
+                createWearableReward(),
+                hasWearable = true
+            }
+        }
     },
     { // 7
         text: "Next stop, our secret garden, where ideas take root and bloom. It’s a chill spot where we plant the seeds of growth.",
@@ -167,6 +176,10 @@ export const talaDialog: npc.Dialog[] = [
         isEndOfDialog: true,
         triggeredByNext: () => {
             NPCManager.playIdleAnim()
+            if (!hasEmote) {
+                createEmoteReward()
+            }
+            hasEmote = true
         }
     },
     { // 16

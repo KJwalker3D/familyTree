@@ -86,11 +86,6 @@
 		"decentraland.org"
 	],
 	"featureToggles": {},
-	"worldConfiguration": {
-		"name": "madagascar.dcl.eth",
-		"placesConfig": {
-			"optOut": true
-		}
-	},
+
 	"vlm": { "sceneId": "b7273ad5-f8d1-4b2d-a304-6acf7e763753" }
 }

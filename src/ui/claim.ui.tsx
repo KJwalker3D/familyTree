@@ -14,7 +14,7 @@ export function openUI(thumbnail: string, wearableName: string ){
 
 
 	const promptTitle = customPrompt.addText({
-		value: 'Wearable incoming!',
+		value: 'Gift incoming!',
 		xPosition: 0,
 		yPosition: 135,
 		color: Color4.Green(),
