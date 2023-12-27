@@ -108,7 +108,7 @@ class Canvas {
             }
         )
         // MeshRenderer.setBox(this.oasisBlocker)
-        MeshCollider.setBox(this.oasisBlocker)
+        MeshCollider.setBox(this.oasisBlocker) // here to remove blocker ty Inihility :)
 
     }
 

@@ -32,7 +32,8 @@ export function main() {
   createMemoryLaneAnim()
   createWishingWellAnim()
   createOasisAssets()
-  //createReward() waiting on foundation dispenser
+  createReward() 
+  //waiting on foundation dispenser
 
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 

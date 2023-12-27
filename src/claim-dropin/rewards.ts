@@ -36,8 +36,8 @@ export function createReward() {
     },
     function () {
       openUI('images/star.png', 'Surprise Gift!')
-      let camp = ClaimConfig.campaign.CAMPAIGN_TEST
-      claimToken(camp, camp.campaignKeys.KEY_2)
+      let camp = ClaimConfig.campaign.CAMPAIGN_FOUND
+      claimToken(camp, camp.campaignKeys.KEY_3)
       console.log('claimed dispenser gift')
       utils.timers.setTimeout(() => { engine.removeEntity(dispenser) }, 5000)
     }

@@ -113,8 +113,7 @@ class QuestM {
     }
 
     endQuest() {
-        let hasWearable: boolean = false
-        let hasEmote: boolean = false
+    
        // this.questCompleteImage.show(2.5) testing without quest complete ui
         NPCManager.endQuest()
         if (this.currentQuestType() == QuestType.TALK_TALA) {
