@@ -469,7 +469,7 @@ export const talaDialog: npc.Dialog[] = [
         text: "You nailed it! The oasis is waiting. When you dive in, go ahead and add your creative touch to our virtual gallery."
     },
     { // 36
-        text: "Take this POAP token – mint it on the POAP mobile app with secret word: you-are-awesome. Ready to create your pixel masterpiece in the Oasis?",
+        text: "Take this POAP token – mint it on the POAP mobile app with secret word: you-are-amazing. Ready to create your pixel masterpiece in the Oasis?",
         isQuestion: true,
         buttons: [
             {

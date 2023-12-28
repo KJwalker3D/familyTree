@@ -22,9 +22,9 @@ export function main() {
     scale: Vector3.create(60, 100, 60),
   }, undefined, undefined, Color4.create(0, 0, 0, 0), false, false)
   */
-  
  
-  setupUi()
+ setupUi()
+ 
   addAssets()
   addAmbientSound()
   addImagePlanes(imagePositions, imageRotations, imageLinks, blogLinks)
@@ -38,10 +38,11 @@ export function main() {
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
   VLM.init();
+ 
 
   new QuickCreator.VideoScreen({
-    liveUrl: 'https://player.vimeo.com/external/884357758.m3u8?s=172724121da5409c84cd3c61110e463e117ff000&logging=false',
-    playlist: ['https://player.vimeo.com/external/846377397.m3u8?s=e10760f6550f98b124bef4fc8c0367b7e0e20d1e&logging=false'],
+    liveUrl: '',
+    playlist: [''],
     position: { x: 15, y: 1, z: 1},
     scale: { x: 0, y: 0, z: 0},
     rotation: { x: 0, y: 0, z: 0}

@@ -5,6 +5,8 @@ import { claimToken } from "./claim";
 import { ClaimConfig } from "./claimConfig";
 import { openUI } from '../ui/claim.ui';
 import * as utils from '@dcl-sdk/utils'
+import VLM from 'vlm-dcl';
+//import { VLMVideo } from 'vlm-dcl/dist/components';
 
 
 export function createReward() {
@@ -135,4 +137,10 @@ export function createEmoteReward() {
     }
   )
 
+}
+
+export function refreshStream() {
+  //VLMVideo.reset()
+  VLM.init()
+  VLM.setState()
 }
