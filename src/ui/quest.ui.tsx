@@ -137,8 +137,8 @@ class questHud {
                             }}
                             onMouseDown={() => {
                                 
-                                refreshStream()
-                                console.log('clicked refresh')
+                               
+                                console.log('clicked teleport')
                                 movePlayerTo(
                                                 {
                                                    newRelativePosition: Vector3.create(48, 74, 68) // oasis
@@ -160,11 +160,7 @@ class questHud {
                                 
                                 refreshStream()
                                 console.log('clicked refresh')
-                                movePlayerTo(
-                                                {
-                                                   newRelativePosition: Vector3.create(48, 74, 68) // oasis
-                                                 }
-                                               )
+                               
                             }}
                             />
                     </UiEntity>
