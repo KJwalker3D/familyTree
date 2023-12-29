@@ -10,6 +10,7 @@ import VLM from "vlm-dcl";
 import { QuickCreator } from "vlm-dcl";
 import { createEmoteReward, createReward, createWearableReward } from './claim-dropin/rewards'
 import { addTestCube } from '@dcl-sdk/utils'
+import { CanvasManager } from './canvasManager'
 
 
 export function main() {
@@ -34,6 +35,8 @@ export function main() {
   createOasisAssets()
   createReward() 
   //waiting on foundation dispenser
+
+  CanvasManager.activate()
 
   addDanceManager() // TODO: adapt to dance-o-meter and place in party area
 
