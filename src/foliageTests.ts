@@ -14,21 +14,7 @@ export function addAssets() {
          visibleMeshesCollisionMask: ColliderLayer.CL_PHYSICS
      })
 
-    // const plantAnimation = engine.addEntity();
-    // Transform.create(plantAnimation, {
-    //     position: position
-    // })
-    // GltfContainer.create(plantAnimation, {
-    //     src: 'assets/garden/plantAnimation.glb'
-    // })
-    // Animator.create(plantAnimation, {
-    //     states: [{
-    //         clip: 'play',
-    //         playing: true,
-    //         loop: true, //looping for testing purposes
-    //     }
-    //     ]
-    // })
+    
 
 /*
     // Can use this to highlight different areas for instance the wishing well, or a place to find or anything
